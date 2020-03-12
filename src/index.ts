@@ -1,0 +1,1 @@
+export { XLang } from './xlang';
