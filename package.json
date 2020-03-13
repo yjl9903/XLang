@@ -16,7 +16,7 @@
     "lint": "prettier --parser typescript --write src/**/*.ts"
   },
   "dependencies": {
-    "@yjl9903/xparse": "^1.0.3",
+    "@yjl9903/xparse": "^1.0.5",
     "cac": "^6.5.7",
     "xlex": "^1.3.2"
   },

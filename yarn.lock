@@ -14,10 +14,10 @@
   dependencies:
     random-js "^2.1.0"
 
-"@yjl9903/xparse@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@yjl9903/xparse/-/xparse-1.0.3.tgz#5260c75800d4faae72d5bd268578446f39e9f734"
-  integrity sha512-T6dYHy2TRHuijdCeL1kWKnV8Pw5W4s7XiBDLQMNs4rjOKik6K4Z9G5IxHPS6wq3DtTZHD4shq9KCSGBBwUVw3g==
+"@yjl9903/xparse@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@yjl9903/xparse/-/xparse-1.0.5.tgz#e4f99039c53451f4a3f4998e5d4075237c1cae2f"
+  integrity sha512-D1VDnm35Ta2xapgoIAqCwLTCh/OuVa2IPCmola0z5TlhxG2IYV1jMb5dlaPtg4q1JMuvnPl4C8agspdH7qT3hA==
   dependencies:
     "@yjl9903/setmap" "^1.0.5"
     cac "^6.5.6"
