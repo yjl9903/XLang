@@ -14,14 +14,14 @@
   dependencies:
     random-js "^2.1.0"
 
-"@yjl9903/xparse@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@yjl9903/xparse/-/xparse-1.0.0.tgz#62e884021acd67a33820b65174fb96271da1f391"
-  integrity sha512-GboRvV5ARpncNPlMojBKhAmlqfDjzAzyVvOtd+3Fb6cjvWWsSWbJeXu0RKOZMF6rOOF9LWhA/GYervV9DR3D9w==
+"@yjl9903/xparse@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@yjl9903/xparse/-/xparse-1.0.3.tgz#5260c75800d4faae72d5bd268578446f39e9f734"
+  integrity sha512-T6dYHy2TRHuijdCeL1kWKnV8Pw5W4s7XiBDLQMNs4rjOKik6K4Z9G5IxHPS6wq3DtTZHD4shq9KCSGBBwUVw3g==
   dependencies:
     "@yjl9903/setmap" "^1.0.5"
     cac "^6.5.6"
-    xlex "^1.3.1"
+    xlex "^1.3.2"
 
 cac@^6.5.6, cac@^6.5.7:
   version "6.5.7"
@@ -44,15 +44,6 @@ temp@~0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/temp/-/temp-0.4.0.tgz#671ad63d57be0fe9d7294664b3fc400636678a60"
   integrity sha1-ZxrWPVe+D+nXKUZks/xABjZnimA=
-
-xlex@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/xlex/-/xlex-1.3.1.tgz#4b53790a0366d215550d8c634b628b12195e08c4"
-  integrity sha512-MH9QXcs8n6xEQOCOD9JOFvSOQRo3SfP5PtCE0F0+ogI24mJpU/ASbVzSJQIWg9vyD3UitXMUeCrBES0DhAP+cA==
-  dependencies:
-    cac "^6.5.6"
-    graphviz "^0.0.9"
-    random-js "^2.1.0"
 
 xlex@^1.3.2:
   version "1.3.2"
