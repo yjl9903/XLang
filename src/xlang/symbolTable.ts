@@ -8,7 +8,7 @@ export class SymbolTable {
     this.father = father;
   }
 
-  add(id: number, name: string, isConst = true, type?: ValueType) {
+  add(id: number, name: string, type?: ValueType, isConst = true) {
     if (this.table.has(name)) {
       throw new Error(`Variable ${name} has been defined`);
     } else {

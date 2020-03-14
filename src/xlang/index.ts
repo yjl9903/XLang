@@ -14,6 +14,11 @@ export class XLang {
   constructor(text: string) {
     this.tokens = lexer.run(text);
     const v = parser.parse(this.tokens);
-    console.log(v);
+    if (v.ok) {
+      console.log(JSON.stringify(v.value, null, 2));
+    } else {
+      console.log(false);
+      console.log(v.token);
+    }
   }
 }
