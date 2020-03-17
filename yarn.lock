@@ -54,14 +54,14 @@
   dependencies:
     random-js "^2.1.0"
 
-"@yjl9903/xparse@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@yjl9903/xparse/-/xparse-1.0.8.tgz#e9f08a8918d64c686e776f1f8c8a1cc45d2c8492"
-  integrity sha512-rR/3hH/3nZrVgYYUceDJSTPDC7C/cGicRA1zhR96GIA8bzIJ+6RDj7BMuZQX62FBE22eOP9XIs+A6a2eLrUJdw==
+"@yjl9903/xparse@^1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@yjl9903/xparse/-/xparse-1.0.10.tgz#8e57dc3e639148a88746cb1385ce80edd8317107"
+  integrity sha512-BeIzrUubQw0INRUyDhPAQ0kgIccVvoNcKVnUbFtNF0fxyJZzov59rwfXTMFGvBPUZ10t6Y+SKnLNK6lVkzTK5A==
   dependencies:
     "@yjl9903/setmap" "^1.0.5"
     cac "^6.5.6"
-    xlex "^1.3.2"
+    xlex "^1.3.3"
 
 ansi-escapes@^3.0.0:
   version "3.2.0"
@@ -924,6 +924,15 @@ xlex@^1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/xlex/-/xlex-1.3.2.tgz#54959d77bdcf4f08d7b0d5ab6888c208c5974b75"
   integrity sha512-ORLsJV0uRBs+xjKOPeARzZa08kXfpu8ov/AcnEE/LpuZjcWmGGq2yhArC6rP/gtUb0XSeCORlk4tuZpZj2f6ag==
+  dependencies:
+    cac "^6.5.6"
+    graphviz "^0.0.9"
+    random-js "^2.1.0"
+
+xlex@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/xlex/-/xlex-1.3.3.tgz#8f00ff7d16825a39c663c7c3b824ec99d4eed391"
+  integrity sha512-s0/T0zkjsuCfwi280dlLg368wcamS33+31MbyZw7b+Bs1OLQU7zFX5EOk55hZJguXJ/mSkmsYW0U5NlLIQ7odA==
   dependencies:
     cac "^6.5.6"
     graphviz "^0.0.9"
