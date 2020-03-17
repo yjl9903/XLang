@@ -148,6 +148,10 @@ const config = {
       rule: '}'
     },
     {
+      type: 'ToArrow',
+      rule: '->'
+    },
+    {
       type: 'Comment',
       rule: '//[ -~]*',
       callback({ type, value }) {
