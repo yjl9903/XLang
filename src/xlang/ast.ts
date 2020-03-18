@@ -16,7 +16,8 @@ import {
   getUnitOPType,
   UnitOPCode,
   PushStackCode,
-  FunctionReturnCode
+  FunctionReturnCode,
+  ThreeAddressCodeType
 } from './tac';
 
 export type LeafType = 'Variable' | 'Literal';
@@ -138,7 +139,7 @@ export class RootASTNode extends BasicASTNode {
 
     // Compile program entry and main function
     const start: FunctionCallCode = {
-      type: 'FunctionCall' as 'FunctionCall',
+      type: ThreeAddressCodeType.FunctionCall,
       name: 'main'
     };
     const code: ThreeAddressCode[] = [start];
@@ -150,7 +151,7 @@ export class RootASTNode extends BasicASTNode {
     for (const fn of this.fns) {
       context.fnName = fn.name;
       varCnt = 0;
-      code.push({ type: 'NOP' });
+      code.push({ type: ThreeAddressCodeType.NOP });
 
       const res = fn.visit(context);
       const fnObj = context.globalFns.get(fn.name) as UserFunction;
@@ -214,7 +215,7 @@ export class FunctionASTNode extends BasicASTNode {
     // TODO: check function return
     // TODO: check every run path have return
     if (!this.haveReturn) {
-      code.push({ type: 'FunctionReturn', name: this.name });
+      code.push({ type: ThreeAddressCodeType.FunctionReturn, name: this.name });
     }
 
     return { code };
@@ -512,7 +513,7 @@ export class FunctionCallASTNode extends BasicASTNode {
         if (this.args.checkType(fn.args)) {
           code.push(...res.code);
           const callCode: FunctionCallCode = {
-            type: 'FunctionCall' as 'FunctionCall',
+            type: ThreeAddressCodeType.FunctionCall,
             name: this.name
           };
           code.push(callCode);
@@ -579,7 +580,7 @@ export class FunctionCallArgListASTNode extends BasicASTNode {
         this.types.push(res.dst.type);
         code.push(...res.code);
         const pushCode: PushStackCode = {
-          type: 'PushStack',
+          type: ThreeAddressCodeType.PushStack,
           src: res.dst
         };
         code.push(pushCode);
@@ -615,7 +616,7 @@ export class FunctionReturnASTNode extends BasicASTNode {
         }
         // generate function return
         const returnCode: FunctionReturnCode = {
-          type: 'FunctionReturn',
+          type: ThreeAddressCodeType.FunctionReturn,
           name: context.fnName,
           src: res.dst
         };
@@ -631,7 +632,7 @@ export class FunctionReturnASTNode extends BasicASTNode {
         );
       }
       const returnCode: FunctionReturnCode = {
-        type: 'FunctionReturn',
+        type: ThreeAddressCodeType.FunctionReturn,
         name: context.fnName
       };
       return { code: [returnCode] };

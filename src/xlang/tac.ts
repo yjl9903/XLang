@@ -1,30 +1,5 @@
 import { ValueType, VoidType } from './type';
 
-export type NOPCodeType = 'NOP';
-
-export interface NOPCode {
-  type: NOPCodeType;
-}
-
-export type FunctionCallCodeType = 'FunctionCall';
-
-export interface FunctionCallCode {
-  type: FunctionCallCodeType;
-  name: string;
-}
-
-export type FunctionReturnCodeType = 'FunctionReturn';
-
-export interface FunctionReturnCode {
-  type: FunctionReturnCodeType;
-  name: string;
-  src?: VariableCode | LiteralCode;
-}
-
-export type BinOPCodeType = 'Plus' | 'Minus' | 'Mul' | 'Div';
-
-export type UnitOPCodeType = 'Negative' | 'Assign';
-
 export interface GlobalVariableCode {
   globalAddress: number;
   type: ValueType;
@@ -36,6 +11,46 @@ export interface LocalVariableCode {
 }
 
 export type VariableCode = GlobalVariableCode | LocalVariableCode;
+
+export enum ThreeAddressCodeType {
+  NOP = 'NOP',
+  FunctionCall = 'FunctionCall',
+  FunctionReturn = 'FunctionReturn',
+  Plus = 'Plus',
+  Minus = 'Minus',
+  Mul = 'Mul',
+  Div = 'Div',
+  Negative = 'Negative',
+  Assign = 'Assign',
+  PushStack = 'PushStack'
+}
+
+export type NOPCodeType = typeof ThreeAddressCodeType.NOP;
+
+export type FunctionCallCodeType = typeof ThreeAddressCodeType.FunctionCall;
+
+export type FunctionReturnCodeType = typeof ThreeAddressCodeType.FunctionReturn;
+
+export type BinOPCodeType = 'Plus' | 'Minus' | 'Mul' | 'Div';
+
+export type UnitOPCodeType = 'Negative' | 'Assign';
+
+export type PushStackCodeType = typeof ThreeAddressCodeType.PushStack;
+
+export interface NOPCode {
+  type: NOPCodeType;
+}
+
+export interface FunctionCallCode {
+  type: FunctionCallCodeType;
+  name: string;
+}
+
+export interface FunctionReturnCode {
+  type: FunctionReturnCodeType;
+  name: string;
+  src?: VariableCode | LiteralCode;
+}
 
 export interface LiteralCode {
   value: number | string | boolean;
@@ -120,8 +135,6 @@ export function getUnitOPType(
     return undefined;
   }
 }
-
-export type PushStackCodeType = 'PushStack';
 
 export interface PushStackCode {
   type: PushStackCodeType;
