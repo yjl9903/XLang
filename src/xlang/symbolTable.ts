@@ -8,7 +8,16 @@ export class SymbolTable {
     this.father = father;
   }
 
-  add(id: number, name: string, type?: ValueType, isConst = true) {
+  add(
+    id: number,
+    name: string,
+    type?: ValueType,
+    {
+      isConst = true,
+      isArg = false,
+      isGlobal = false
+    }: { isConst?: boolean; isArg?: boolean; isGlobal?: boolean } = {}
+  ) {
     if (this.table.has(name)) {
       throw new Error(`Variable ${name} has been defined`);
     } else {
@@ -16,30 +25,14 @@ export class SymbolTable {
         id,
         name,
         type,
-        isArg: false,
-        isConst
+        isArg,
+        isConst,
+        isGlobal
       });
     }
   }
 
-  setType(name: string, type: ValueType) {
-    const v = this.query(name);
-    if (v) {
-      if (v.type) {
-        if (v.type !== type) {
-          throw new Error(
-            `${v.type} variable ${name} can not be assigned ${type} value`
-          );
-        }
-      } else {
-        v.type = type;
-      }
-    } else {
-      throw new Error(`Variable ${name} does not exist`);
-    }
-  }
-
-  query(name: string) {
+  query(name: string): Variable | undefined {
     if (this.table.has(name)) {
       return this.table.get(name);
     } else if (this.father) {

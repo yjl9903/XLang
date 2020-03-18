@@ -21,6 +21,7 @@ export interface UserFunction {
   type: ValueType | VoidType;
   args: ValueType[];
   address: number;
+  memCount: number;
   name: string;
 }
 

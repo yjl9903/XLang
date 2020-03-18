@@ -1,5 +1,11 @@
 import { config as lexConfig, KeyWordList } from './lex';
-import { Literal, ValueType, Variable } from './type';
+import {
+  Literal,
+  ValueType,
+  Variable,
+  BuiltinFunction,
+  VoidType
+} from './type';
 import {
   LeafASTNode,
   BinOPASTNode,
@@ -9,13 +15,27 @@ import {
   StatementListASTNode,
   DefineListASTNode,
   DefineASTNode,
-  ValueASTNode
+  ValueASTNode,
+  clear as clearAST,
+  ArgDefineListASTNode,
+  FunctionCallArgListASTNode,
+  FunctionCallASTNode,
+  FunctionReturnASTNode,
+  StatementASTNode
 } from './ast';
+import { SymbolTable } from './symbolTable';
+import { getBinOPType } from './tac';
 
 const PROGRAM = 'Program',
   STATEMENTList = 'StatmentList',
   STATEMENT = 'Statement',
   TYPES = 'Types',
+  ARGDEFINE = 'ArgDefine',
+  ARGDEFINEList = 'ArgDefineList',
+  RETURNTYPE = 'FunctionReturnType',
+  FUNCTIONCALL = 'FunctionCall',
+  CALLARGList = 'FunctionCallArgList',
+  FUNCTIONRETURN = 'FunctionReturn',
   DEFINE = 'Define',
   DEFINEList = 'DefineList';
 
@@ -33,7 +53,9 @@ const StatementProduction = [
           'fn',
           'Identifier',
           'LRound',
+          ARGDEFINEList,
           'RRound',
+          RETURNTYPE,
           'LBrace',
           STATEMENTList,
           'RBrace',
@@ -43,14 +65,16 @@ const StatementProduction = [
           fn,
           { value },
           L,
+          argList: ArgDefineListASTNode,
           R,
+          type: ValueType | VoidType,
           LB,
           body: StatementListASTNode,
           RB,
           rest: RootASTNode
         ) {
           body.createContext = true;
-          const fnNode = new FunctionASTNode(value, body);
+          const fnNode = new FunctionASTNode(value, argList, type, body);
           const root = new RootASTNode();
           root.fns.push(fnNode);
           root.merge(rest);
@@ -62,16 +86,83 @@ const StatementProduction = [
           'fn',
           'main',
           'LRound',
+          ARGDEFINEList,
           'RRound',
           'LBrace',
           STATEMENTList,
           'RBrace'
         ],
-        reduce(fn, main, L, R, LB, body: StatementListASTNode) {
+        reduce(
+          fn,
+          main,
+          L,
+          argList: ArgDefineListASTNode,
+          R,
+          LB,
+          body: StatementListASTNode
+        ) {
           const root = new RootASTNode();
           body.createContext = true;
-          root.main = new FunctionASTNode('main', body);
+          root.main = new FunctionASTNode('main', argList, 'voidType', body);
           return root;
+        }
+      }
+    ]
+  },
+  {
+    left: RETURNTYPE,
+    right: [
+      {
+        rule: ['ToArrow', TYPES],
+        reduce(arrow, type: ValueType) {
+          return type;
+        }
+      },
+      {
+        rule: [],
+        reduce() {
+          return 'voidType';
+        }
+      }
+    ]
+  },
+  {
+    left: ARGDEFINEList,
+    right: [
+      {
+        rule: [ARGDEFINE, 'Comma', ARGDEFINEList],
+        reduce(arg: Variable, comma, other: ArgDefineListASTNode) {
+          const aList = new ArgDefineListASTNode();
+          aList.defs.push(arg);
+          aList.merge(other);
+          return aList;
+        }
+      },
+      {
+        rule: [ARGDEFINE],
+        reduce(arg: Variable) {
+          const aList = new ArgDefineListASTNode();
+          aList.defs.push(arg);
+          return aList;
+        }
+      },
+      {
+        rule: [],
+        reduce() {
+          return new ArgDefineListASTNode();
+        }
+      }
+    ]
+  },
+  {
+    left: ARGDEFINE,
+    right: [
+      {
+        rule: ['Identifier', 'Colon', TYPES],
+        reduce({ value }, colon, type: ValueType) {
+          const arg = genVariable(type, value);
+          arg.isArg = true;
+          return arg;
         }
       }
     ]
@@ -81,8 +172,14 @@ const StatementProduction = [
     right: [
       {
         rule: [STATEMENT, STATEMENTList],
-        reduce(statement, list: StatementListASTNode) {
+        reduce(statement: StatementASTNode, list: StatementListASTNode) {
           const sts = new StatementListASTNode();
+          if (
+            statement.type === 'FunctionReturn' &&
+            (statement as FunctionReturnASTNode).src !== undefined
+          ) {
+            sts.haveReturn = true;
+          }
           sts.statements.push(statement);
           sts.merge(list);
           return sts;
@@ -132,8 +229,33 @@ const StatementProduction = [
       },
       {
         rule: [EXPR, 'Semicolon'],
-        reduce(node) {
+        reduce(node: ValueASTNode) {
           return node;
+        }
+      },
+      {
+        rule: [FUNCTIONRETURN, 'Semicolon'],
+        reduce(node: FunctionReturnASTNode) {
+          return node;
+        }
+      }
+    ]
+  },
+  {
+    left: FUNCTIONRETURN,
+    right: [
+      {
+        rule: ['return'],
+        reduce() {
+          return new FunctionReturnASTNode();
+        }
+      },
+      {
+        rule: ['return', EXPR],
+        reduce(ret, expr: ValueASTNode) {
+          const rNode = new FunctionReturnASTNode();
+          rNode.src = expr;
+          return rNode;
         }
       }
     ]
@@ -237,7 +359,8 @@ function genVariable(type?: ValueType, name?: string): Variable {
       name,
       type,
       isArg: false,
-      isConst: false
+      isConst: false,
+      isGlobal: false
     };
   } else {
     const tot = tmpCnt++;
@@ -246,7 +369,8 @@ function genVariable(type?: ValueType, name?: string): Variable {
       name: '$' + String(tot),
       type,
       isArg: false,
-      isConst: true
+      isConst: true,
+      isGlobal: false
     };
   }
 }
@@ -257,15 +381,15 @@ const ExprProduction = [
     right: [
       {
         rule: [Term, 'Plus', EXPR],
-        reduce(term, mul, expr) {
-          const type = term.dst.type;
+        reduce(term: ValueASTNode, mul, expr: ValueASTNode) {
+          const type = getBinOPType('Plus', term.dst.type, expr.dst.type);
           return new BinOPASTNode('Plus', genVariable(type), term, expr);
         }
       },
       {
         rule: [Term, 'Minus', EXPR],
-        reduce(term, mul, expr) {
-          const type = term.dst.type;
+        reduce(term: ValueASTNode, mul, expr: ValueASTNode) {
+          const type = getBinOPType('Minus', term.dst.type, expr.dst.type);
           return new BinOPASTNode('Minus', genVariable(type), term, expr);
         }
       },
@@ -282,21 +406,21 @@ const ExprProduction = [
     right: [
       {
         rule: [Factor, 'Mul', Term],
-        reduce(factor, mul, term) {
-          const type = factor.dst.type;
+        reduce(factor: ValueASTNode, mul, term: ValueASTNode) {
+          const type = getBinOPType('Mul', factor.dst.type, term.dst.type);
           return new BinOPASTNode('Mul', genVariable(type), factor, term);
         }
       },
       {
         rule: [Factor, 'Div', Term],
-        reduce(factor, mul, term) {
-          const type = factor.dst.type;
+        reduce(factor: ValueASTNode, mul, term: ValueASTNode) {
+          const type = getBinOPType('Div', factor.dst.type, term.dst.type);
           return new BinOPASTNode('Div', genVariable(type), factor, term);
         }
       },
       {
         rule: [Factor],
-        reduce(node) {
+        reduce(node: ValueASTNode) {
           return node;
         }
       }
@@ -307,7 +431,7 @@ const ExprProduction = [
     right: [
       {
         rule: ['Plus', RightValue],
-        reduce(plus, node) {
+        reduce(plus, node: ValueASTNode) {
           return node;
         }
       },
@@ -323,19 +447,19 @@ const ExprProduction = [
       },
       {
         rule: [RightValue],
-        reduce(node) {
+        reduce(node: ValueASTNode) {
           return node;
         }
       },
       {
         rule: ['LRound', EXPR, 'RRound'],
-        reduce(l, node, r) {
+        reduce(l, node: ValueASTNode, r) {
           return node;
         }
       },
       {
         rule: ['Plus', 'LRound', EXPR, 'RRound'],
-        reduce(plus, l, node, r) {
+        reduce(plus, l, node: ValueASTNode, r) {
           return node;
         }
       },
@@ -377,6 +501,52 @@ const ExprProduction = [
         reduce({ value }) {
           return new LeafASTNode(genVariable(undefined, value));
         }
+      },
+      {
+        rule: [FUNCTIONCALL],
+        reduce(call: FunctionCallASTNode) {
+          return call;
+        }
+      }
+    ]
+  },
+  {
+    left: FUNCTIONCALL,
+    right: [
+      {
+        rule: ['Identifier', 'LRound', CALLARGList, 'RRound'],
+        reduce({ value }, L, args: FunctionCallArgListASTNode) {
+          const fnCall = new FunctionCallASTNode(value, args);
+          return fnCall;
+        }
+      }
+    ]
+  },
+  {
+    left: CALLARGList,
+    right: [
+      {
+        rule: [EXPR, 'Comma', CALLARGList],
+        reduce(expr: ValueASTNode, comma, rest: FunctionCallArgListASTNode) {
+          const fnaList = new FunctionCallArgListASTNode();
+          fnaList.args.push(expr);
+          fnaList.merge(rest);
+          return fnaList;
+        }
+      },
+      {
+        rule: [EXPR],
+        reduce(expr: ValueASTNode) {
+          const fnaList = new FunctionCallArgListASTNode();
+          fnaList.args.push(expr);
+          return fnaList;
+        }
+      },
+      {
+        rule: [],
+        reduce() {
+          return new FunctionCallArgListASTNode();
+        }
       }
     ]
   }
@@ -386,6 +556,16 @@ export const config = {
   hooks: {
     beforeCreate() {
       clear();
+      clearAST();
+    },
+    created(root: RootASTNode, bindedFns: Map<string, BuiltinFunction>) {
+      const context = {
+        symbols: new SymbolTable(),
+        globalFns: new Map([...bindedFns]),
+        fnName: 'main'
+      };
+      const res = root.visit(context);
+      return { ...res, globalFns: [...context.globalFns], root };
     }
   },
   tokens: [...lexConfig.tokens.map(item => item.type), ...KeyWordList],
@@ -394,12 +574,18 @@ export const config = {
     STATEMENTList,
     STATEMENT,
     TYPES,
+    ARGDEFINE,
+    ARGDEFINEList,
+    RETURNTYPE,
     DEFINE,
     DEFINEList,
     EXPR,
     Term,
     Factor,
-    RightValue
+    RightValue,
+    FUNCTIONCALL,
+    CALLARGList,
+    FUNCTIONRETURN
   ],
   start: PROGRAM,
   productions: [...StatementProduction, ...ExprProduction]
