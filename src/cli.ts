@@ -10,7 +10,7 @@ const cli = cac('xlang');
 
 cli
   .command('<codePath>', 'Run XLang')
-  .option('--out <outputPath>', 'Compile Output')
+  .option('-o, --out <outputPath>', 'Compile Output')
   .action((codePath, option: { out?: string }) => {
     const codeText = readFileSync(codePath, 'utf-8');
     const runtime = new XLang();
