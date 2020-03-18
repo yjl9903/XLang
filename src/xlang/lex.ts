@@ -1,5 +1,6 @@
 const KeyWord = {
   fn: 'fn',
+  return: 'return',
   main: 'main',
   let: 'let',
   const: 'const',
