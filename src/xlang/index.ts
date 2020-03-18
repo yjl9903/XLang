@@ -4,7 +4,7 @@ import { LRParser } from '@yjl9903/xparse';
 import { config as LexConfig } from './lex';
 import { config as SyntaxConfig } from './syntax';
 import { ThreeAddressCode } from './tac';
-import { BuiltinFunction, ValueType, VoidType } from './type';
+import { BuiltinFunction, ValueType, VoidType, GlobalFunction } from './type';
 
 const lexer = new Lexer(LexConfig);
 
@@ -49,5 +49,5 @@ export class XLang {
     }
   }
 
-  run(code: ThreeAddressCode[]) {}
+  run(code: ThreeAddressCode[], globalFns: Map<string, GlobalFunction>) {}
 }

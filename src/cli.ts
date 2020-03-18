@@ -1,26 +1,33 @@
 #!/usr/bin/env node
 
 import path from 'path';
-import { readFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { cac } from 'cac';
 
 import { XLang } from './xlang';
 
 const cli = cac('xlang');
 
-cli.command('<Code>', 'Run XLang').action(codePath => {
-  const codeText = readFileSync(codePath, 'utf-8');
-  const runtime = new XLang();
-  runtime.addFn('print', 'voidType', ['stringType'], (text: string) => {
-    console.log(text);
+cli
+  .command('<codePath>', 'Run XLang')
+  .option('--out <outputPath>', 'Compile Output')
+  .action((codePath, option: { out?: string }) => {
+    const codeText = readFileSync(codePath, 'utf-8');
+    const runtime = new XLang();
+    runtime.addFn('print', 'voidType', ['stringType'], (text: string) => {
+      console.log(text);
+    });
+    const res = runtime.compile(codeText);
+    if (res.ok) {
+      if (option.out) {
+        writeFileSync(option.out, JSON.stringify(res, null, 2), 'utf8');
+      }
+    } else {
+      console.log('Compile Fail');
+      return;
+    }
+    runtime.run(res.code, new Map(res.globalFns));
   });
-  const res = runtime.compile(codeText);
-  if (res.ok) {
-    console.log(JSON.stringify(res, null, 2));
-  } else {
-    console.log('Compile Fail');
-  }
-});
 
 cli.help();
 
