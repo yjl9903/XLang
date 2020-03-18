@@ -599,14 +599,19 @@ export class FunctionReturnASTNode extends BasicASTNode {
   }
 
   visit(context: Context): NodeVisitorReturn {
+    const fnObj = context.globalFns.get(context.fnName);
+    if (fnObj === undefined) {
+      throw new Error('unknown');
+    }
     if (this.src !== undefined) {
       const code: ThreeAddressCode[] = [];
       const res = this.src.visit(context);
       if (res.dst !== undefined) {
         code.push(...res.code);
-        const fnObj = context.globalFns.get(context.fnName);
-        if (fnObj === undefined || fnObj.type === 'voidType') {
-          throw new Error('unknown');
+        if (fnObj.type !== res.dst.type) {
+          throw new Error(
+            `function "${context.fnName}" should return <void>, but return <${res.dst.type}>`
+          );
         }
         // generate function return
         const returnCode: FunctionReturnCode = {
@@ -620,6 +625,11 @@ export class FunctionReturnASTNode extends BasicASTNode {
         throw new Error(`function "${context.fnName}" return value is void`);
       }
     } else {
+      if (fnObj.type !== 'voidType') {
+        throw new Error(
+          `function "${context.fnName}" should return <${fnObj.type}>, but return <void>`
+        );
+      }
       const returnCode: FunctionReturnCode = {
         type: 'FunctionReturn',
         name: context.fnName
