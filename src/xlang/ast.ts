@@ -340,11 +340,16 @@ export class ArgDefineListASTNode extends BasicASTNode {
   }
 
   visit(context: Context): NodeVisitorReturn {
-    for (let id = 1; id <= this.defs.length; id++) {
-      const def = this.defs[id - 1];
-      context.symbols.add(-id, def.name, def.type as ValueType, {
-        isArg: true
-      });
+    for (let i = 0; i < this.defs.length; i++) {
+      const def = this.defs[i];
+      context.symbols.add(
+        i - this.defs.length,
+        def.name,
+        def.type as ValueType,
+        {
+          isArg: true
+        }
+      );
     }
     return { code: [] };
   }

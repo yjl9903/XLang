@@ -9,9 +9,9 @@ import { XLang } from './xlang';
 const cli = cac('xlang');
 
 cli
-  .command('<codePath>', 'Run XLang')
+  .command('<codePath> [...args]', 'Run XLang')
   .option('-o, --out <outputPath>', 'Compile Output')
-  .action((codePath, option: { out?: string }) => {
+  .action((codePath, args: string[], option: { out?: string }) => {
     const codeText = readFileSync(codePath, 'utf-8');
     const runtime = new XLang();
     runtime.addFn('print', 'voidType', ['stringType'], (text: string) => {
@@ -26,7 +26,7 @@ cli
       console.log('Compile Fail');
       return;
     }
-    runtime.run(res.code, new Map(res.globalFns));
+    runtime.run(res, args);
   });
 
 cli.help();
