@@ -4,6 +4,16 @@
 
 A simple programming language with XLex and XParse.
 
+## Hello World
+
+```
+fn main() {
+  print("Hello World!");
+}
+```
+
+This code will print "Hello World!" on your terminal.
+
 ## License
 
 [MIT](https://github.com/yjl9903/XLang/blob/master/LICENSE)
