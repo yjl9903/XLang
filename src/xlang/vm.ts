@@ -7,7 +7,9 @@ import {
   FunctionReturnCode,
   PushStackCode,
   UnitOPCode,
-  BinOPCode
+  BinOPCode,
+  GotoCode,
+  IfGotoCode
 } from './tac';
 import { GlobalFunction, UserFunction } from './type';
 
@@ -121,6 +123,29 @@ export function vm(
       const pushStackCode = code as PushStackCode;
       const value = getValue(pushStackCode.src);
       varStk.push(value);
+    },
+    [ThreeAddressCodeType.Goto](code: ThreeAddressCode) {
+      const gotoCode = code as GotoCode;
+      pc += gotoCode.offset;
+    },
+    [ThreeAddressCodeType.IfGoto](code: ThreeAddressCode) {
+      const ifGotoCode = code as IfGotoCode;
+      const value = getValue(ifGotoCode.src);
+      if (typeof value === 'number') {
+        if (value === 0) {
+          pc += ifGotoCode.offset;
+        }
+      } else if (typeof value === 'string') {
+        if (value.length === 0) {
+          pc += ifGotoCode.offset;
+        }
+      } else if (typeof value === 'boolean') {
+        if (!value) {
+          pc += ifGotoCode.offset;
+        }
+      } else {
+        pc += ifGotoCode.offset;
+      }
     },
     [ThreeAddressCodeType.Assign](code: ThreeAddressCode) {
       const assginCode = code as UnitOPCode;

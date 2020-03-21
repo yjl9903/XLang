@@ -16,6 +16,8 @@ export enum ThreeAddressCodeType {
   NOP = 'NOP',
   FunctionCall = 'FunctionCall',
   FunctionReturn = 'FunctionReturn',
+  Goto = 'Goto',
+  IfGoto = 'IfGoto',
   Plus = 'Plus',
   Minus = 'Minus',
   Mul = 'Mul',
@@ -30,6 +32,10 @@ export type NOPCodeType = typeof ThreeAddressCodeType.NOP;
 export type FunctionCallCodeType = typeof ThreeAddressCodeType.FunctionCall;
 
 export type FunctionReturnCodeType = typeof ThreeAddressCodeType.FunctionReturn;
+
+export type GotoCodeType = typeof ThreeAddressCodeType.Goto;
+
+export type IfGotoCodeType = typeof ThreeAddressCodeType.IfGoto;
 
 export type BinOPCodeType = 'Plus' | 'Minus' | 'Mul' | 'Div';
 
@@ -52,6 +58,18 @@ export interface FunctionReturnCode {
   src?: VariableCode | LiteralCode;
 }
 
+export interface GotoCode {
+  type: GotoCodeType;
+  offset: number;
+}
+
+export interface IfGotoCode {
+  type: IfGotoCodeType;
+  src: VariableCode | LiteralCode;
+  // when src is false, goto
+  offset: number;
+}
+
 export interface LiteralCode {
   value: number | string | boolean;
   type: ValueType;
@@ -63,6 +81,27 @@ export interface BinOPCode {
   x: VariableCode | LiteralCode;
   y: VariableCode | LiteralCode;
 }
+
+export interface UnitOPCode {
+  type: UnitOPCodeType;
+  dst: VariableCode;
+  src: VariableCode | LiteralCode;
+}
+
+export interface PushStackCode {
+  type: PushStackCodeType;
+  src: VariableCode | LiteralCode;
+}
+
+export type ThreeAddressCode =
+  | NOPCode
+  | FunctionCallCode
+  | FunctionReturnCode
+  | GotoCode
+  | IfGotoCode
+  | BinOPCode
+  | UnitOPCode
+  | PushStackCode;
 
 export function getBinOPType(
   op: BinOPCodeType,
@@ -112,12 +151,6 @@ export function getBinOPType(
   }
 }
 
-export interface UnitOPCode {
-  type: UnitOPCodeType;
-  dst: VariableCode;
-  src: VariableCode | LiteralCode;
-}
-
 export function getUnitOPType(
   op: UnitOPCodeType,
   src: ValueType | VoidType
@@ -135,16 +168,3 @@ export function getUnitOPType(
     return undefined;
   }
 }
-
-export interface PushStackCode {
-  type: PushStackCodeType;
-  src: VariableCode | LiteralCode;
-}
-
-export type ThreeAddressCode =
-  | NOPCode
-  | FunctionCallCode
-  | FunctionReturnCode
-  | BinOPCode
-  | UnitOPCode
-  | PushStackCode;

@@ -21,7 +21,8 @@ import {
   FunctionCallArgListASTNode,
   FunctionCallASTNode,
   FunctionReturnASTNode,
-  StatementASTNode
+  StatementASTNode,
+  IfStatementASTNode
 } from './ast';
 import { SymbolTable } from './symbolTable';
 import { getBinOPType } from './tac';
@@ -29,6 +30,7 @@ import { getBinOPType } from './tac';
 const PROGRAM = 'Program',
   STATEMENTList = 'StatmentList',
   STATEMENT = 'Statement',
+  OPENSTATEMENT = 'OpenStatement',
   TYPES = 'Types',
   ARGDEFINE = 'ArgDefine',
   ARGDEFINEList = 'ArgDefineList',
@@ -43,6 +45,8 @@ const EXPR = 'Expr',
   Term = 'Term',
   Factor = 'Factor',
   RightValue = 'RightValue';
+
+const LOGICALEXPR = 'LogicalExpr';
 
 const StatementProduction = [
   {
@@ -179,6 +183,22 @@ const StatementProduction = [
             (statement as FunctionReturnASTNode).src !== undefined
           ) {
             sts.haveReturn = true;
+          } else if (statement.type === 'IfStatement') {
+            if ((statement as IfStatementASTNode).haveReturn()) {
+              sts.haveReturn = true;
+            }
+          }
+          sts.statements.push(statement);
+          sts.merge(list);
+          return sts;
+        }
+      },
+      {
+        rule: [OPENSTATEMENT, STATEMENTList],
+        reduce(statement: IfStatementASTNode, list: StatementListASTNode) {
+          const sts = new StatementListASTNode();
+          if (statement.haveReturn()) {
+            sts.haveReturn = true;
           }
           sts.statements.push(statement);
           sts.merge(list);
@@ -237,6 +257,59 @@ const StatementProduction = [
         rule: [FUNCTIONRETURN, 'Semicolon'],
         reduce(node: FunctionReturnASTNode) {
           return node;
+        }
+      },
+      {
+        rule: ['if', 'LRound', EXPR, 'RRound', STATEMENT, 'else', STATEMENT],
+        reduce(
+          f,
+          l,
+          expr: ValueASTNode,
+          r,
+          body: StatementASTNode,
+          el,
+          elseBody: StatementASTNode
+        ) {
+          return new IfStatementASTNode(expr, body, elseBody);
+        }
+      }
+    ]
+  },
+  {
+    left: OPENSTATEMENT,
+    right: [
+      {
+        rule: ['if', 'LRound', EXPR, 'RRound', STATEMENT],
+        reduce(f, l, expr: ValueASTNode, r, body: StatementASTNode) {
+          return new IfStatementASTNode(expr, body);
+        }
+      },
+      {
+        rule: ['if', 'LRound', EXPR, 'RRound', OPENSTATEMENT],
+        reduce(f, l, expr: ValueASTNode, r, body: StatementASTNode) {
+          return new IfStatementASTNode(expr, body);
+        }
+      },
+      {
+        rule: [
+          'if',
+          'LRound',
+          EXPR,
+          'RRound',
+          STATEMENT,
+          'else',
+          OPENSTATEMENT
+        ],
+        reduce(
+          f,
+          l,
+          expr: ValueASTNode,
+          r,
+          body: StatementASTNode,
+          el,
+          elseBody: StatementASTNode
+        ) {
+          return new IfStatementASTNode(expr, body, elseBody);
         }
       }
     ]
@@ -573,6 +646,7 @@ export const config = {
     PROGRAM,
     STATEMENTList,
     STATEMENT,
+    OPENSTATEMENT,
     TYPES,
     ARGDEFINE,
     ARGDEFINEList,

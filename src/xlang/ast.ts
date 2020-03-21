@@ -17,7 +17,9 @@ import {
   UnitOPCode,
   PushStackCode,
   FunctionReturnCode,
-  ThreeAddressCodeType
+  ThreeAddressCodeType,
+  IfGotoCode,
+  GotoCode
 } from './tac';
 
 export type LeafType = 'Variable' | 'Literal';
@@ -31,6 +33,8 @@ export type RootType = 'Root';
 export type FunctionDefType = 'FunctionDef';
 
 export type StatementListType = 'StatementList';
+
+export type IfStatementType = 'IfStatement';
 
 export type DefineListType = 'DefineList';
 
@@ -48,6 +52,7 @@ export type ASTNodeType =
   | RootType
   | FunctionDefType
   | StatementListType
+  | IfStatementType
   | DefineListType
   | DefineType
   | ArgDefineListType
@@ -68,7 +73,8 @@ export type StatementASTNode =
   | StatementListASTNode
   | ValueASTNode
   | DefineListASTNode
-  | FunctionReturnASTNode;
+  | FunctionReturnASTNode
+  | IfStatementASTNode;
 
 export interface Context {
   symbols: SymbolTable;
@@ -252,6 +258,81 @@ export class StatementListASTNode extends BasicASTNode {
     const code: ThreeAddressCode[] = [];
     for (const stat of this.statements) {
       code.push(...stat.visit(context).code);
+    }
+    return { code };
+  }
+}
+
+export class IfStatementASTNode extends BasicASTNode {
+  condition: ValueASTNode;
+  body: StatementASTNode;
+  elseBody?: StatementASTNode;
+
+  constructor(
+    condition: ValueASTNode,
+    body: StatementASTNode,
+    elseBody?: StatementASTNode
+  ) {
+    super('IfStatement');
+    this.condition = condition;
+    this.body = body;
+    this.elseBody = elseBody;
+  }
+
+  haveReturn() {
+    if (this.elseBody !== undefined) {
+      if (
+        (this.body.type === 'FunctionReturn' &&
+          (this.body as FunctionReturnASTNode).src !== undefined) ||
+        (this.body.type === 'StatementList' &&
+          (this.body as StatementListASTNode).haveReturn)
+      ) {
+        if (
+          (this.elseBody.type === 'FunctionReturn' &&
+            (this.body as FunctionReturnASTNode).src !== undefined) ||
+          (this.elseBody.type === 'StatementList' &&
+            (this.elseBody as StatementListASTNode).haveReturn)
+        ) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  visit(context: Context): NodeVisitorReturn {
+    const code: ThreeAddressCode[] = [];
+    const condRes = this.condition.visit(context);
+    code.push(...condRes.code);
+    if (condRes.dst !== undefined) {
+      const ifFalseGoto: IfGotoCode = {
+        type: ThreeAddressCodeType.IfGoto,
+        src: condRes.dst,
+        offset: code.length
+      };
+      code.push(ifFalseGoto);
+      const bodyRes = this.body.visit(context);
+      code.push(...bodyRes.code);
+
+      // gen else code
+      if (this.elseBody) {
+        const trueGoto: GotoCode = {
+          type: ThreeAddressCodeType.Goto,
+          offset: code.length
+        };
+        code.push(trueGoto);
+
+        ifFalseGoto.offset = code.length - ifFalseGoto.offset - 1;
+
+        const elseRes = this.elseBody.visit(context);
+        code.push(...elseRes.code);
+        trueGoto.offset = code.length - trueGoto.offset - 1;
+      } else {
+        ifFalseGoto.offset = code.length - ifFalseGoto.offset - 1;
+      }
+    } else {
+      // throw Error
+      throw new Error('void error');
     }
     return { code };
   }
