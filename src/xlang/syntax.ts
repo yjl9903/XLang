@@ -558,6 +558,18 @@ const ExprProduction = [
         }
       },
       {
+        rule: ['True'],
+        reduce() {
+          return new LeafASTNode(genLiteral('boolType', true));
+        }
+      },
+      {
+        rule: ['False'],
+        reduce() {
+          return new LeafASTNode(genLiteral('boolType', false));
+        }
+      },
+      {
         rule: ['Float'],
         reduce({ value }) {
           return new LeafASTNode(genLiteral('floatType', value));
