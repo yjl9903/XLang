@@ -323,7 +323,7 @@ const StatementProduction = [
     right: [
       {
         rule: [DEFINE, 'Comma', DEFINEList],
-        reduce(def, comma, other: DefineListASTNode) {
+        reduce(def: DefineASTNode, comma, other: DefineListASTNode) {
           const dList = new DefineListASTNode();
           dList.defs.push(def);
           dList.merge(other);
