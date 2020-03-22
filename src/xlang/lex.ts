@@ -173,7 +173,7 @@ const config = {
       rule: '//[ -~]*',
       callback({ type, value }) {
         return {
-          type,
+          type: '__Comment__', // Special lexer type
           value: value.substr(2).trim()
         };
       }

@@ -920,15 +920,6 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
-xlex@^1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/xlex/-/xlex-1.3.2.tgz#54959d77bdcf4f08d7b0d5ab6888c208c5974b75"
-  integrity sha512-ORLsJV0uRBs+xjKOPeARzZa08kXfpu8ov/AcnEE/LpuZjcWmGGq2yhArC6rP/gtUb0XSeCORlk4tuZpZj2f6ag==
-  dependencies:
-    cac "^6.5.6"
-    graphviz "^0.0.9"
-    random-js "^2.1.0"
-
 xlex@^1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/xlex/-/xlex-1.3.3.tgz#8f00ff7d16825a39c663c7c3b824ec99d4eed391"
