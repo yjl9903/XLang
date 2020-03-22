@@ -166,6 +166,54 @@ export function vm(
         setValue(notCode.dst, !value);
       }
     },
+    [ThreeAddressCodeType.And](code: ThreeAddressCode) {
+      const andCode = code as BinOPCode;
+      const valueX = getValue(andCode.x);
+      const valueY = getValue(andCode.y);
+      setValue(andCode.dst, valueX && valueY);
+    },
+    [ThreeAddressCodeType.Or](code: ThreeAddressCode) {
+      const orCode = code as BinOPCode;
+      const valueX = getValue(orCode.x);
+      const valueY = getValue(orCode.y);
+      setValue(orCode.dst, valueX || valueY);
+    },
+    [ThreeAddressCodeType.Equal](code: ThreeAddressCode) {
+      const equalCode = code as BinOPCode;
+      const valueX = getValue(equalCode.x);
+      const valueY = getValue(equalCode.y);
+      setValue(equalCode.dst, valueX === valueY);
+    },
+    [ThreeAddressCodeType.NotEqual](code: ThreeAddressCode) {
+      const notEqualCode = code as BinOPCode;
+      const valueX = getValue(notEqualCode.x);
+      const valueY = getValue(notEqualCode.y);
+      setValue(notEqualCode.dst, valueX !== valueY);
+    },
+    [ThreeAddressCodeType.LessOrEqual](code: ThreeAddressCode) {
+      const leCode = code as BinOPCode;
+      const valueX = getValue(leCode.x);
+      const valueY = getValue(leCode.y);
+      setValue(leCode.dst, valueX <= valueY);
+    },
+    [ThreeAddressCodeType.LessThan](code: ThreeAddressCode) {
+      const lCode = code as BinOPCode;
+      const valueX = getValue(lCode.x);
+      const valueY = getValue(lCode.y);
+      setValue(lCode.dst, valueX < valueY);
+    },
+    [ThreeAddressCodeType.MoreOrEqual](code: ThreeAddressCode) {
+      const geCode = code as BinOPCode;
+      const valueX = getValue(geCode.x);
+      const valueY = getValue(geCode.y);
+      setValue(geCode.dst, valueX >= valueY);
+    },
+    [ThreeAddressCodeType.MoreThan](code: ThreeAddressCode) {
+      const gCode = code as BinOPCode;
+      const valueX = getValue(gCode.x);
+      const valueY = getValue(gCode.y);
+      setValue(gCode.dst, valueX > valueY);
+    },
     [ThreeAddressCodeType.Negative](code: ThreeAddressCode) {
       const negativeCode = code as UnitOPCode;
       const value = getValue(negativeCode.src);

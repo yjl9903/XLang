@@ -1,4 +1,4 @@
-import { ValueType, VoidType } from './type';
+import { ValueType, VoidType, CmpOpType } from './type';
 
 export interface GlobalVariableCode {
   globalAddress: number;
@@ -24,6 +24,14 @@ export enum ThreeAddressCodeType {
   Div = 'Div',
   Negative = 'Negative',
   Not = 'Not',
+  And = 'And',
+  Or = 'Or',
+  NotEqual = 'NotEqual',
+  Equal = 'Equal',
+  LessThan = 'LessThan',
+  MoreThan = 'MoreThan',
+  LessOrEqual = 'LessOrEqual',
+  MoreOrEqual = 'MoreOrEqual',
   Assign = 'Assign',
   PushStack = 'PushStack'
 }
@@ -38,7 +46,14 @@ export type GotoCodeType = typeof ThreeAddressCodeType.Goto;
 
 export type IfGotoCodeType = typeof ThreeAddressCodeType.IfGoto;
 
-export type BinOPCodeType = 'Plus' | 'Minus' | 'Mul' | 'Div';
+export type BinOPCodeType =
+  | 'Plus'
+  | 'Minus'
+  | 'Mul'
+  | 'Div'
+  | 'And'
+  | 'Or'
+  | CmpOpType;
 
 export type UnitOPCodeType = 'Negative' | 'Not' | 'Assign';
 
@@ -146,6 +161,17 @@ export function getBinOPType(
     } else {
       return 'numberType';
     }
+  } else if (
+    op === 'And' ||
+    op === 'Or' ||
+    op === 'Equal' ||
+    op === 'NotEqual' ||
+    op === 'LessOrEqual' ||
+    op === 'LessThan' ||
+    op === 'MoreOrEqual' ||
+    op === 'MoreThan'
+  ) {
+    return 'boolType';
   } else {
     // throw new Error(`${op} is not a binary operation`);
     return undefined;

@@ -97,10 +97,6 @@ const config = {
       rule: '='
     },
     {
-      type: 'Equal',
-      rule: '=='
-    },
-    {
       type: 'Comma',
       rule: ','
     },
@@ -127,6 +123,14 @@ const config = {
     {
       type: 'Or',
       rule: '\\|\\|'
+    },
+    {
+      type: 'Equal',
+      rule: '=='
+    },
+    {
+      type: 'NotEqual',
+      rule: '!='
     },
     {
       type: 'LessThan',

@@ -1,5 +1,13 @@
 export type ValueType = 'numberType' | 'floatType' | 'stringType' | 'boolType';
 
+export type CmpOpType =
+  | 'Equal'
+  | 'NotEqual'
+  | 'LessThan'
+  | 'MoreThan'
+  | 'LessOrEqual'
+  | 'MoreOrEqual';
+
 export type VoidType = 'voidType';
 
 export interface Variable {

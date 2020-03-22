@@ -4,7 +4,8 @@ import {
   ValueType,
   Variable,
   BuiltinFunction,
-  VoidType
+  VoidType,
+  CmpOpType
 } from './type';
 import {
   LeafASTNode,
@@ -46,7 +47,10 @@ const EXPR = 'Expr',
   Factor = 'Factor',
   RightValue = 'RightValue';
 
-const LOGICALEXPR = 'LogicalExpr';
+const LOGICALEXPR = 'LogicalExpr',
+  LOGICALAND = 'LogicalAnd',
+  CMP = 'LogicalCmp',
+  CMPToken = 'CmpToken';
 
 const StatementProduction = [
   {
@@ -260,7 +264,15 @@ const StatementProduction = [
         }
       },
       {
-        rule: ['if', 'LRound', EXPR, 'RRound', STATEMENT, 'else', STATEMENT],
+        rule: [
+          'if',
+          'LRound',
+          LOGICALEXPR,
+          'RRound',
+          STATEMENT,
+          'else',
+          STATEMENT
+        ],
         reduce(
           f,
           l,
@@ -279,13 +291,13 @@ const StatementProduction = [
     left: OPENSTATEMENT,
     right: [
       {
-        rule: ['if', 'LRound', EXPR, 'RRound', STATEMENT],
+        rule: ['if', 'LRound', LOGICALEXPR, 'RRound', STATEMENT],
         reduce(f, l, expr: ValueASTNode, r, body: StatementASTNode) {
           return new IfStatementASTNode(expr, body);
         }
       },
       {
-        rule: ['if', 'LRound', EXPR, 'RRound', OPENSTATEMENT],
+        rule: ['if', 'LRound', LOGICALEXPR, 'RRound', OPENSTATEMENT],
         reduce(f, l, expr: ValueASTNode, r, body: StatementASTNode) {
           return new IfStatementASTNode(expr, body);
         }
@@ -294,7 +306,7 @@ const StatementProduction = [
         rule: [
           'if',
           'LRound',
-          EXPR,
+          LOGICALEXPR,
           'RRound',
           STATEMENT,
           'else',
@@ -649,6 +661,95 @@ const ExprProduction = [
   }
 ];
 
+const LogicalProduction = [
+  {
+    left: LOGICALEXPR,
+    right: [
+      {
+        rule: [LOGICALAND],
+        reduce(expr: ValueASTNode) {
+          return expr;
+        }
+      },
+      {
+        rule: [LOGICALAND, 'Or', LOGICALEXPR],
+        reduce(cmp: ValueASTNode, or, expr: ValueASTNode) {
+          return new BinOPASTNode('Or', genVariable('boolType'), cmp, expr);
+        }
+      }
+    ]
+  },
+  {
+    left: LOGICALAND,
+    right: [
+      {
+        rule: [CMP],
+        reduce(cmp: ValueASTNode) {
+          return cmp;
+        }
+      },
+      {
+        rule: [CMP, 'And', LOGICALAND],
+        reduce(cmp: ValueASTNode, and, expr: ValueASTNode) {
+          return new BinOPASTNode('And', genVariable('boolType'), cmp, expr);
+        }
+      }
+    ]
+  },
+  {
+    left: CMP,
+    right: [
+      {
+        rule: [EXPR, CMPToken, EXPR],
+        reduce(lExpr: ValueASTNode, type: CmpOpType, rExpr: ValueASTNode) {
+          return new BinOPASTNode(type, genVariable('boolType'), lExpr, rExpr);
+        }
+      }
+    ]
+  },
+  {
+    left: CMPToken,
+    right: [
+      {
+        rule: ['Equal'],
+        reduce({ type }) {
+          return type;
+        }
+      },
+      {
+        rule: ['NotEqual'],
+        reduce({ type }) {
+          return type;
+        }
+      },
+      {
+        rule: ['LessThan'],
+        reduce({ type }) {
+          return type;
+        }
+      },
+      {
+        rule: ['MoreThan'],
+        reduce({ type }) {
+          return type;
+        }
+      },
+      {
+        rule: ['LessOrEqual'],
+        reduce({ type }) {
+          return type;
+        }
+      },
+      {
+        rule: ['MoreOrEqual'],
+        reduce({ type }) {
+          return type;
+        }
+      }
+    ]
+  }
+];
+
 export const config = {
   hooks: {
     beforeCreate() {
@@ -683,8 +784,12 @@ export const config = {
     RightValue,
     FUNCTIONCALL,
     CALLARGList,
-    FUNCTIONRETURN
+    FUNCTIONRETURN,
+    LOGICALEXPR,
+    LOGICALAND,
+    CMP,
+    CMPToken
   ],
   start: PROGRAM,
-  productions: [...StatementProduction, ...ExprProduction]
+  productions: [...StatementProduction, ...ExprProduction, ...LogicalProduction]
 };

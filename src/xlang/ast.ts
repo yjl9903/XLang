@@ -4,7 +4,8 @@ import {
   ValueType,
   GlobalFunction,
   VoidType,
-  UserFunction
+  UserFunction,
+  CmpOpType
 } from './type';
 import { SymbolTable } from './symbolTable';
 import {
@@ -24,7 +25,14 @@ import {
 
 export type LeafType = 'Variable' | 'Literal';
 
-export type BinOPType = 'Plus' | 'Minus' | 'Mul' | 'Div';
+export type BinOPType =
+  | 'Plus'
+  | 'Minus'
+  | 'Mul'
+  | 'Div'
+  | 'And'
+  | 'Or'
+  | CmpOpType;
 
 export type UnitOPType = 'Negative' | 'Not' | 'Assign';
 
@@ -82,12 +90,10 @@ export interface Context {
   fnName: string;
 }
 
-let varCnt = 0,
-  labelCnt = 0;
+let varCnt = 0;
 
 export function clear() {
   varCnt = 0;
-  labelCnt = 0;
 }
 
 type NodeVisitorReturn = {
