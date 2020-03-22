@@ -23,6 +23,7 @@ export enum ThreeAddressCodeType {
   Mul = 'Mul',
   Div = 'Div',
   Negative = 'Negative',
+  Not = 'Not',
   Assign = 'Assign',
   PushStack = 'PushStack'
 }
@@ -39,7 +40,7 @@ export type IfGotoCodeType = typeof ThreeAddressCodeType.IfGoto;
 
 export type BinOPCodeType = 'Plus' | 'Minus' | 'Mul' | 'Div';
 
-export type UnitOPCodeType = 'Negative' | 'Assign';
+export type UnitOPCodeType = 'Negative' | 'Not' | 'Assign';
 
 export type PushStackCodeType = typeof ThreeAddressCodeType.PushStack;
 
@@ -164,6 +165,8 @@ export function getUnitOPType(
       return undefined;
     }
     return src;
+  } else if (op === 'Not') {
+    return 'boolType';
   } else {
     return undefined;
   }

@@ -117,6 +117,18 @@ const config = {
       rule: '.'
     },
     {
+      type: 'Not',
+      rule: '!'
+    },
+    {
+      type: 'And',
+      rule: '&&'
+    },
+    {
+      type: 'Or',
+      rule: '\\|\\|'
+    },
+    {
       type: 'LessThan',
       rule: '<'
     },

@@ -26,7 +26,7 @@ export type LeafType = 'Variable' | 'Literal';
 
 export type BinOPType = 'Plus' | 'Minus' | 'Mul' | 'Div';
 
-export type UnitOPType = 'Negative' | 'Assign';
+export type UnitOPType = 'Negative' | 'Not' | 'Assign';
 
 export type RootType = 'Root';
 

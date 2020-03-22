@@ -152,6 +152,20 @@ export function vm(
       const value = getValue(assginCode.src);
       setValue(assginCode.dst, value);
     },
+    [ThreeAddressCodeType.Not](code: ThreeAddressCode) {
+      const notCode = code as UnitOPCode;
+      const value = getValue(notCode.src);
+      if (typeof value === 'boolean') {
+        setValue(notCode.dst, !value);
+      } else if (typeof value === 'number') {
+        setValue(notCode.dst, value === 0);
+      } else if (typeof value === 'string') {
+        setValue(notCode.dst, value.length === 0);
+      } else {
+        // TODO: type may be error
+        setValue(notCode.dst, !value);
+      }
+    },
     [ThreeAddressCodeType.Negative](code: ThreeAddressCode) {
       const negativeCode = code as UnitOPCode;
       const value = getValue(negativeCode.src);

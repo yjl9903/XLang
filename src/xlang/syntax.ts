@@ -519,6 +519,12 @@ const ExprProduction = [
         }
       },
       {
+        rule: ['Not', RightValue],
+        reduce(not, node: ValueASTNode) {
+          return new UnitOPASTNode('Not', genVariable(node.dst.type), node);
+        }
+      },
+      {
         rule: [RightValue],
         reduce(node: ValueASTNode) {
           return node;
@@ -544,6 +550,12 @@ const ExprProduction = [
             genVariable(node.dst.type),
             node
           );
+        }
+      },
+      {
+        rule: ['Not', 'LRound', EXPR, 'RRound'],
+        reduce(minus, l, node: ValueASTNode) {
+          return new UnitOPASTNode('Not', genVariable(node.dst.type), node);
         }
       }
     ]
