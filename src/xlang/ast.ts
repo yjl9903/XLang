@@ -496,9 +496,23 @@ export class BinOPASTNode extends BasicASTNode {
     const code: ThreeAddressCode[] = [];
     const xRes = this.x.visit(context);
     const yRes = this.y.visit(context);
-    code.push(...xRes.code, ...yRes.code);
     // gen BinOP
     if (xRes.dst !== undefined && yRes.dst !== undefined) {
+      code.push(...xRes.code);
+      // avoid bin op having two function call source, so the first use a temp variable
+      if ('globalAddress' in xRes.dst && xRes.dst.globalAddress === 0) {
+        const tmpDst = { address: varCnt++, type: xRes.dst.type };
+        context.symbols.add(tmpDst.address, '$' + tmpDst.address, tmpDst.type);
+        const assignCode: UnitOPCode = {
+          type: 'Assign',
+          dst: tmpDst,
+          src: xRes.dst
+        };
+        code.push(assignCode);
+        xRes.dst = tmpDst;
+      }
+      code.push(...yRes.code);
+
       const tmpVar = varCnt++;
       const type = getBinOPType(
         this.type as BinOPType,
