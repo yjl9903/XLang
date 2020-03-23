@@ -24,6 +24,12 @@ cli
       }
     } else {
       console.log('Compile Fail');
+      if (res.token) {
+        console.log(res.token);
+      }
+      if (res.message) {
+        console.log(res.message);
+      }
       return;
     }
     runtime.run(res, args);

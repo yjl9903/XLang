@@ -56,11 +56,9 @@ export class XLang {
       if (ast.ok) {
         return { ok: true, tokens, ...ast.value };
       } else {
-        console.log(ast.token);
         return { ok: false, token: ast.token };
       }
     } catch (error) {
-      console.log(error);
       return { ok: false, message: error.message };
     }
   }
