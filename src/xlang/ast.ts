@@ -606,6 +606,11 @@ export class UnitOPASTNode extends BasicASTNode {
               `${mem.type} variable ${this.dst.name} can not be assigned ${res.dst.type} value`
             );
           }
+          if (this.type === 'Assign' && mem.isConst) {
+            throw new Error(
+              `const variable ${this.dst.name} can not be assigned a new value`
+            );
+          }
           const dst = mem.isGlobal
             ? { globalAddress: mem.id, type: mem.type }
             : { address: mem.id, type: mem.type };
