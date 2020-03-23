@@ -26,8 +26,15 @@ interface CompileErrorOut {
   message?: string;
 }
 
+interface IHooks {
+  beforeRun: Array<() => any>;
+}
+
 export class XLang {
   readonly bindedFns: Map<string, BuiltinFunction> = new Map();
+  readonly hooks: IHooks = {
+    beforeRun: []
+  };
 
   constructor() {}
 

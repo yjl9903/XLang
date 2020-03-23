@@ -46,6 +46,8 @@ export type IfStatementType = 'IfStatement';
 
 export type WhileStatementType = 'WhileStatement';
 
+export type ForStatementType = 'ForStatement';
+
 export type DefineListType = 'DefineList';
 
 export type DefineType = 'Define';
@@ -64,6 +66,7 @@ export type ASTNodeType =
   | StatementListType
   | IfStatementType
   | WhileStatementType
+  | ForStatementType
   | DefineListType
   | DefineType
   | ArgDefineListType
@@ -86,7 +89,8 @@ export type StatementASTNode =
   | DefineListASTNode
   | FunctionReturnASTNode
   | IfStatementASTNode
-  | WhileStatementASTNode;
+  | WhileStatementASTNode
+  | ForStatementASTNode;
 
 export interface Context {
   symbols: SymbolTable;
@@ -386,6 +390,77 @@ export class WhileStatementASTNode extends BasicASTNode {
   }
 }
 
+export class ForStatementASTNode extends BasicASTNode {
+  init: DefineListASTNode | UnitOPASTNode[];
+  condition: ValueASTNode;
+  update: UnitOPASTNode[];
+  body: StatementASTNode;
+
+  constructor(
+    init: DefineListASTNode | UnitOPASTNode[],
+    condition: ValueASTNode,
+    update: UnitOPASTNode[],
+    body: StatementASTNode
+  ) {
+    super('ForStatement');
+    this.init = init;
+    this.condition = condition;
+    this.update = update;
+    this.body = body;
+  }
+
+  visit(context: Context): NodeVisitorReturn {
+    const sTable = new SymbolTable();
+    sTable.father = context.symbols;
+    context = { ...context, symbols: sTable };
+    const code: ThreeAddressCode[] = [];
+
+    // gen init code
+    if ('type' in this.init) {
+      const initRes = this.init.visit(context);
+      code.push(...initRes.code);
+    } else {
+      for (const assign of this.init) {
+        const assignRes = assign.visit(context);
+        code.push(...assignRes.code);
+      }
+    }
+    const initLen = code.length;
+
+    const condRes = this.condition.visit(context);
+    if (condRes.dst !== undefined) {
+      code.push(...condRes.code);
+      const ifFalseGoto: IfGotoCode = {
+        type: ThreeAddressCodeType.IfGoto,
+        src: condRes.dst,
+        offset: code.length,
+        target: false
+      };
+      code.push(ifFalseGoto);
+
+      const bodyRes = this.body.visit(context);
+      code.push(...bodyRes.code);
+
+      const updateCode: ThreeAddressCode[] = ([] as ThreeAddressCode[]).concat(
+        ...this.update.map(assign => assign.visit(context).code)
+      );
+      code.push(...updateCode);
+
+      const gotoInit: GotoCode = {
+        type: ThreeAddressCodeType.Goto,
+        offset: initLen - code.length - 1
+      };
+      code.push(gotoInit);
+
+      ifFalseGoto.offset = code.length - ifFalseGoto.offset - 1;
+
+      return { code };
+    } else {
+      throw new Error('void error');
+    }
+  }
+}
+
 export class DefineListASTNode extends BasicASTNode {
   defs: DefineASTNode[] = [];
   isConst: boolean = false;
@@ -476,7 +551,8 @@ export class ArgDefineListASTNode extends BasicASTNode {
         def.name,
         def.type as ValueType,
         {
-          isArg: true
+          isArg: true,
+          isConst: false
         }
       );
     }

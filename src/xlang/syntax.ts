@@ -24,7 +24,8 @@ import {
   FunctionReturnASTNode,
   StatementASTNode,
   IfStatementASTNode,
-  WhileStatementASTNode
+  WhileStatementASTNode,
+  ForStatementASTNode
 } from './ast';
 import { SymbolTable } from './symbolTable';
 import { getBinOPType } from './tac';
@@ -36,6 +37,8 @@ const PROGRAM = 'Program',
   TYPES = 'Types',
   ARGDEFINE = 'ArgDefine',
   ARGDEFINEList = 'ArgDefineList',
+  FORInit = 'ForInit',
+  FORASSIGNList = 'ForAssignList',
   RETURNTYPE = 'FunctionReturnType',
   FUNCTIONCALL = 'FunctionCall',
   CALLARGList = 'FunctionCallArgList',
@@ -290,6 +293,77 @@ const StatementProduction = [
         rule: ['while', 'LRound', LOGICALEXPR, 'RRound', STATEMENT],
         reduce(whl, l, expr: ValueASTNode, r, body: StatementASTNode) {
           return new WhileStatementASTNode(expr, body);
+        }
+      },
+      {
+        rule: [
+          'for',
+          'LRound',
+          FORInit,
+          'Semicolon',
+          LOGICALEXPR,
+          'Semicolon',
+          FORASSIGNList,
+          'RRound',
+          STATEMENT
+        ],
+        reduce(
+          f,
+          L,
+          init: DefineListASTNode | UnitOPASTNode[],
+          s1,
+          condExpr: ValueASTNode,
+          s2,
+          assignList: UnitOPASTNode[],
+          R,
+          body: StatementASTNode
+        ) {
+          return new ForStatementASTNode(init, condExpr, assignList, body);
+        }
+      }
+    ]
+  },
+  {
+    left: FORInit,
+    right: [
+      {
+        rule: ['let', DEFINEList],
+        reduce(lt, list: DefineListASTNode) {
+          return list;
+        }
+      },
+      {
+        rule: [FORASSIGNList],
+        reduce(list: UnitOPASTNode[]) {
+          return list;
+        }
+      }
+    ]
+  },
+  {
+    left: FORASSIGNList,
+    right: [
+      {
+        rule: [],
+        reduce() {
+          return [];
+        }
+      },
+      {
+        rule: ['Identifier', 'Assign', EXPR],
+        reduce({ value }, assign, expr: ValueASTNode) {
+          return [
+            new UnitOPASTNode('Assign', genVariable(undefined, value), expr)
+          ];
+        }
+      },
+      {
+        rule: ['Identifier', 'Assign', EXPR, 'Comma', FORASSIGNList],
+        reduce({ value }, assign, expr: ValueASTNode, other: UnitOPASTNode[]) {
+          return [
+            new UnitOPASTNode('Assign', genVariable(undefined, value), expr),
+            ...other
+          ];
         }
       }
     ]
@@ -796,6 +870,8 @@ export const config = {
     TYPES,
     ARGDEFINE,
     ARGDEFINEList,
+    FORInit,
+    FORASSIGNList,
     RETURNTYPE,
     DEFINE,
     DEFINEList,
