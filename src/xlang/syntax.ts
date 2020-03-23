@@ -23,7 +23,8 @@ import {
   FunctionCallASTNode,
   FunctionReturnASTNode,
   StatementASTNode,
-  IfStatementASTNode
+  IfStatementASTNode,
+  WhileStatementASTNode
 } from './ast';
 import { SymbolTable } from './symbolTable';
 import { getBinOPType } from './tac';
@@ -283,6 +284,12 @@ const StatementProduction = [
           elseBody: StatementASTNode
         ) {
           return new IfStatementASTNode(expr, body, elseBody);
+        }
+      },
+      {
+        rule: ['while', 'LRound', LOGICALEXPR, 'RRound', STATEMENT],
+        reduce(whl, l, expr: ValueASTNode, r, body: StatementASTNode) {
+          return new WhileStatementASTNode(expr, body);
         }
       }
     ]

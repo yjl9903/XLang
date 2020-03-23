@@ -131,19 +131,21 @@ export function vm(
     [ThreeAddressCodeType.IfGoto](code: ThreeAddressCode) {
       const ifGotoCode = code as IfGotoCode;
       const value = getValue(ifGotoCode.src);
+      let flag: boolean = Boolean(value);
       if (typeof value === 'number') {
         if (value === 0) {
-          pc += ifGotoCode.offset;
+          flag = false;
         }
       } else if (typeof value === 'string') {
         if (value.length === 0) {
-          pc += ifGotoCode.offset;
+          flag = false;
         }
       } else if (typeof value === 'boolean') {
         if (!value) {
-          pc += ifGotoCode.offset;
+          flag = false;
         }
-      } else {
+      }
+      if (flag === ifGotoCode.target) {
         pc += ifGotoCode.offset;
       }
     },

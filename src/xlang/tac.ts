@@ -82,7 +82,8 @@ export interface GotoCode {
 export interface IfGotoCode {
   type: IfGotoCodeType;
   src: VariableCode | LiteralCode;
-  // when src is false, goto
+  // when src is equal to target, goto
+  target: boolean;
   offset: number;
 }
 

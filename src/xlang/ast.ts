@@ -44,6 +44,8 @@ export type StatementListType = 'StatementList';
 
 export type IfStatementType = 'IfStatement';
 
+export type WhileStatementType = 'WhileStatement';
+
 export type DefineListType = 'DefineList';
 
 export type DefineType = 'Define';
@@ -61,6 +63,7 @@ export type ASTNodeType =
   | FunctionDefType
   | StatementListType
   | IfStatementType
+  | WhileStatementType
   | DefineListType
   | DefineType
   | ArgDefineListType
@@ -82,7 +85,8 @@ export type StatementASTNode =
   | ValueASTNode
   | DefineListASTNode
   | FunctionReturnASTNode
-  | IfStatementASTNode;
+  | IfStatementASTNode
+  | WhileStatementASTNode;
 
 export interface Context {
   symbols: SymbolTable;
@@ -314,6 +318,7 @@ export class IfStatementASTNode extends BasicASTNode {
       const ifFalseGoto: IfGotoCode = {
         type: ThreeAddressCodeType.IfGoto,
         src: condRes.dst,
+        target: false,
         offset: code.length
       };
       code.push(ifFalseGoto);
@@ -336,6 +341,43 @@ export class IfStatementASTNode extends BasicASTNode {
       } else {
         ifFalseGoto.offset = code.length - ifFalseGoto.offset - 1;
       }
+    } else {
+      // throw Error
+      throw new Error('void error');
+    }
+    return { code };
+  }
+}
+
+export class WhileStatementASTNode extends BasicASTNode {
+  condition: ValueASTNode;
+  body: StatementASTNode;
+
+  constructor(condition: ValueASTNode, body: StatementASTNode) {
+    super('WhileStatement');
+    this.condition = condition;
+    this.body = body;
+  }
+
+  visit(context: Context): NodeVisitorReturn {
+    const code: ThreeAddressCode[] = [];
+    const condRes = this.condition.visit(context);
+    code.push(...condRes.code);
+    if (condRes.dst !== undefined) {
+      const ifFalseGoto: IfGotoCode = {
+        type: ThreeAddressCodeType.IfGoto,
+        src: condRes.dst,
+        target: false,
+        offset: code.length
+      };
+      code.push(ifFalseGoto);
+      const bodyRes = this.body.visit(context);
+      code.push(...bodyRes.code);
+      code.push({
+        type: ThreeAddressCodeType.Goto,
+        offset: -code.length - 1
+      });
+      ifFalseGoto.offset = code.length - ifFalseGoto.offset - 1;
     } else {
       // throw Error
       throw new Error('void error');
