@@ -237,13 +237,21 @@ export function vm(
       const mulCode = code as BinOPCode;
       const valueX = getValue(mulCode.x);
       const valueY = getValue(mulCode.y);
-      setValue(mulCode.dst, valueX * valueY);
+      const value =
+        mulCode.x.type === 'numberType' && mulCode.y.type === 'numberType'
+          ? Math.floor(valueX * valueY)
+          : valueX * valueY;
+      setValue(mulCode.dst, value);
     },
     [ThreeAddressCodeType.Div](code: ThreeAddressCode) {
       const divCode = code as BinOPCode;
       const valueX = getValue(divCode.x);
       const valueY = getValue(divCode.y);
-      setValue(divCode.dst, valueX / valueY);
+      const value =
+        divCode.x.type === 'numberType' && divCode.y.type === 'numberType'
+          ? Math.floor(valueX / valueY)
+          : valueX / valueY;
+      setValue(divCode.dst, value);
     }
   };
 
