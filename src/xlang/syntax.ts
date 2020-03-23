@@ -349,6 +349,14 @@ const StatementProduction = [
           rNode.src = expr;
           return rNode;
         }
+      },
+      {
+        rule: ['return', LOGICALEXPR],
+        reduce(ret, expr: ValueASTNode) {
+          const rNode = new FunctionReturnASTNode();
+          rNode.src = expr;
+          return rNode;
+        }
       }
     ]
   },
@@ -710,6 +718,12 @@ const LogicalProduction = [
         rule: [EXPR, CMPToken, EXPR],
         reduce(lExpr: ValueASTNode, type: CmpOpType, rExpr: ValueASTNode) {
           return new BinOPASTNode(type, genVariable('boolType'), lExpr, rExpr);
+        }
+      },
+      {
+        rule: ['LRound', LOGICALEXPR, 'RRound'],
+        reduce(l, expr: ValueASTNode) {
+          return expr;
         }
       }
     ]

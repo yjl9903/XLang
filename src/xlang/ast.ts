@@ -553,7 +553,6 @@ export class BinOPASTNode extends BasicASTNode {
         code.push(assignCode);
         xRes.dst = tmpDst;
       }
-      code.push(...yRes.code);
 
       const tmpVar = varCnt++;
       const type = getBinOPType(
@@ -561,8 +560,32 @@ export class BinOPASTNode extends BasicASTNode {
         xRes.dst.type,
         yRes.dst.type
       );
+
       if (type !== undefined) {
         context.symbols.add(tmpVar, '$' + tmpVar, type);
+
+        // short-circuit evaluation
+        if (this.type === 'And' || this.type === 'Or') {
+          const ifGoto: IfGotoCode = {
+            type: ThreeAddressCodeType.IfGoto,
+            src: xRes.dst,
+            target: this.type === 'And',
+            offset: 2
+          };
+          code.push(ifGoto);
+          code.push({
+            type: 'Assign',
+            dst: { address: tmpVar, type },
+            src: { value: this.type === 'Or', type: 'boolType' }
+          });
+          code.push({
+            type: ThreeAddressCodeType.Goto,
+            offset: yRes.code.length + 1
+          });
+        }
+
+        code.push(...yRes.code);
+
         code.push({
           type: this.type as BinOPType,
           dst: { address: tmpVar, type },
