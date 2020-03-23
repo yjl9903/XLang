@@ -1,0 +1,11 @@
+fn cal(a: number) -> number {
+  if (a > 1) {
+    return a + cal(a - 1);
+  } else {
+    return a;
+  }
+}
+
+fn main(a: number) {
+  print(cal(a) + "");
+}

@@ -1,0 +1,20 @@
+fn main(score: number) {
+  if (score > 100 || score < 0) {
+    print("Your score \"" + score + "\" is illegal!");
+    return ;
+  }
+  if (score >= 90) {
+    print("Excellent!");
+  } else if (score >= 80) {
+    print("Good!");
+  } else if (score >= 70) {
+    print("Common");
+  } else if (score >= 60) {
+    print("Pass");
+  } else {
+    print("emmmmmmm");
+  }
+  if (score < 60 && score == 0) {
+    print("0!");
+  }
+}

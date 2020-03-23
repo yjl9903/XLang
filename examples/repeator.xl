@@ -1,0 +1,11 @@
+fn main(a: number) {
+  let i = 0;
+  if (a >= 0) {
+    while (i <= a) {
+      print("" + i);
+      i = i + 1;
+    }
+  } else {
+    print("a should not be negative");
+  }
+}

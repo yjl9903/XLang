@@ -1,0 +1,7 @@
+fn String(a: number) -> string {
+  return a + "";
+}
+
+fn main(a: number, b: number) {
+  print(String(a + b));
+}
