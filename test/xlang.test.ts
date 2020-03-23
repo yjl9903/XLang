@@ -49,3 +49,9 @@ test('repeator', async () => {
   const code = runtime.compile(repeator);
   expect(code.ok).toBeTruthy();
 });
+
+test('multable', async () => {
+  const multable = await read('multable.xl');
+  const code = runtime.compile(multable);
+  expect(code.ok).toBeTruthy();
+});
