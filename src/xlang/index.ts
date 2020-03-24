@@ -9,10 +9,12 @@ import { vm } from './vm';
 import { RootASTNode } from './ast';
 import {
   beforeRunHooks,
+  afterRunHooks,
   StringLib,
   NumberLib,
   FloatLib,
-  ArrayLib
+  ArrayLib,
+  IOLib
 } from './lib';
 
 const lexer = new Lexer(LexConfig);
@@ -40,6 +42,10 @@ interface IHooks {
 
 export class XLang {
   readonly bindedFns = new Map<string, BuiltinFunction>([
+    ...IOLib.map((fn: BuiltinFunction): [string, BuiltinFunction] => [
+      fn.name,
+      fn
+    ]),
     ...ArrayLib.map((fn: BuiltinFunction): [string, BuiltinFunction] => [
       fn.name,
       fn
@@ -59,7 +65,7 @@ export class XLang {
   ]);
   readonly hooks: IHooks = {
     beforeRun: [...beforeRunHooks],
-    afterRun: []
+    afterRun: [...afterRunHooks]
   };
 
   constructor() {}
@@ -93,8 +99,8 @@ export class XLang {
     }
   }
 
-  run(compiled: CompileOut, args: string[] = []) {
-    this.hooks.beforeRun.forEach(fn => fn());
+  run(compiled: CompileOut, args: string[] = [], input: string[] = []) {
+    this.hooks.beforeRun.forEach(fn => fn(input));
     const code = compiled.code;
     const globalFns = new Map<string, GlobalFunction>(compiled.globalFns);
     const arg = args.map(

@@ -8,9 +8,82 @@ interface XLangArray {
 
 const Arrays = new Map<string, XLangArray>();
 
+let Input: string[] = [],
+  pos = 0;
+
 export const beforeRunHooks: Array<(...args: any[]) => any> = [
+  input => {
+    Arrays.clear();
+    Input = input || [];
+    pos = 0;
+  }
+];
+
+export const afterRunHooks: Array<(...args: any[]) => any> = [
   () => {
     Arrays.clear();
+    Input = [];
+    pos = 0;
+  }
+];
+
+export const IOLib: BuiltinFunction[] = [
+  {
+    name: 'In::hasNext',
+    args: [],
+    type: 'boolType',
+    fn() {
+      return pos < Input.length;
+    }
+  },
+  {
+    name: 'In::nextNumber',
+    args: [],
+    type: 'numberType',
+    fn() {
+      const val = parseInt(Input[pos++]);
+      if (!isNaN(val)) {
+        return val;
+      } else {
+        throw new Error(`Input Error, expects a Number`);
+      }
+    }
+  },
+  {
+    name: 'In::nextFloat',
+    args: [],
+    type: 'floatType',
+    fn() {
+      const val = parseFloat(Input[pos++]);
+      if (!isNaN(val)) {
+        return val;
+      } else {
+        throw new Error(`Input Error, expects a Float`);
+      }
+    }
+  },
+  {
+    name: 'In::nextString',
+    args: [],
+    type: 'stringType',
+    fn() {
+      return Input[pos++];
+    }
+  },
+  {
+    name: 'In::nextBool',
+    args: [],
+    type: 'boolType',
+    fn() {
+      const val = Input[pos++];
+      if (val === 'true') {
+        return true;
+      } else if (val === 'false') {
+        return false;
+      } else {
+        throw new Error(`Input Error, expects a Bool`);
+      }
+    }
   }
 ];
 
