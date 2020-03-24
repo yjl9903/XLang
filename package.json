@@ -29,7 +29,9 @@
   "scripts": {
     "build": "yarn tsc",
     "lint": "yarn prettier --parser typescript --write src/**/*.ts",
-    "test": "yarn jest"
+    "test": "yarn jest",
+    "docs:dev": "yarn vuepress dev docs",
+    "docs:build": "yarn vuepress build docs"
   },
   "dependencies": {
     "@yjl9903/xparse": "^1.0.10",
@@ -44,6 +46,7 @@
     "lint-staged": "^10.0.8",
     "prettier": "^1.19.1",
     "ts-jest": "^25.2.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "vuepress": "^1.4.0"
   }
 }
