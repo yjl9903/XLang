@@ -61,3 +61,9 @@ test('array', async () => {
   const code = runtime.compile(array);
   expect(code.ok).toBeTruthy();
 });
+
+test('read', async () => {
+  const readT = await read('read.xl');
+  const code = runtime.compile(readT);
+  expect(code.ok).toBeTruthy();
+});

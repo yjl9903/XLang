@@ -1,0 +1,7 @@
+fn main() {
+  const n = In::nextNumber();
+  for (let i = 1; i <= n; i = i + 1) {
+    const a = In::nextNumber();
+    print(Number::to_string(a));
+  }
+}
