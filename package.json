@@ -1,5 +1,5 @@
 {
-  "name": "xlang",
+  "name": "@yjl9903/xlang",
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
