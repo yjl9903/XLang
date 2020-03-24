@@ -1,0 +1,17 @@
+fn main(a: number) {
+  if (a < 0) {
+    print("emmmm");
+    return ;
+  } else if (a <= 1) {
+    print("1");
+    return ;
+  }
+  Array::new("fib");
+  Array::assign("fib", a + 1);
+  Array::set("fib", 0, 1);
+  Array::set("fib", 1, 1);
+  for (let i = 2; i <= a; i = i + 1) {
+    Array::set("fib", i, Array::get("fib", i - 1) + Array::get("fib", i - 2));
+  }
+  print(Number::to_string(Array::get("fib", a)));
+}

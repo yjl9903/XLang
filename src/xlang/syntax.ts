@@ -717,6 +717,23 @@ const ExprProduction = [
           const fnCall = new FunctionCallASTNode(value, args);
           return fnCall;
         }
+      },
+      {
+        rule: [
+          'Identifier',
+          'DoubleColon',
+          'Identifier',
+          'LRound',
+          CALLARGList,
+          'RRound'
+        ],
+        reduce(nameSpace, dc, { value }, L, args: FunctionCallArgListASTNode) {
+          const fnCall = new FunctionCallASTNode(
+            nameSpace.value + '::' + value,
+            args
+          );
+          return fnCall;
+        }
       }
     ]
   },

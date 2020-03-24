@@ -105,6 +105,10 @@ const config = {
       rule: ':'
     },
     {
+      type: 'DoubleColon',
+      rule: '::'
+    },
+    {
       type: 'Semicolon',
       rule: ';'
     },

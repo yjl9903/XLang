@@ -55,3 +55,9 @@ test('multable', async () => {
   const code = runtime.compile(multable);
   expect(code.ok).toBeTruthy();
 });
+
+test('array', async () => {
+  const array = await read('array.xl');
+  const code = runtime.compile(array);
+  expect(code.ok).toBeTruthy();
+});

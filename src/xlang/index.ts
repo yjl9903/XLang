@@ -7,6 +7,13 @@ import { ThreeAddressCode, LiteralCode } from './tac';
 import { BuiltinFunction, ValueType, VoidType, GlobalFunction } from './type';
 import { vm } from './vm';
 import { RootASTNode } from './ast';
+import {
+  beforeRunHooks,
+  StringLib,
+  NumberLib,
+  FloatLib,
+  ArrayLib
+} from './lib';
 
 const lexer = new Lexer(LexConfig);
 
@@ -27,13 +34,32 @@ interface CompileErrorOut {
 }
 
 interface IHooks {
-  beforeRun: Array<() => any>;
+  beforeRun: Array<(...args: any[]) => any>;
+  afterRun: Array<(...args: any[]) => any>;
 }
 
 export class XLang {
-  readonly bindedFns: Map<string, BuiltinFunction> = new Map();
+  readonly bindedFns = new Map<string, BuiltinFunction>([
+    ...ArrayLib.map((fn: BuiltinFunction): [string, BuiltinFunction] => [
+      fn.name,
+      fn
+    ]),
+    ...StringLib.map((fn: BuiltinFunction): [string, BuiltinFunction] => [
+      fn.name,
+      fn
+    ]),
+    ...NumberLib.map((fn: BuiltinFunction): [string, BuiltinFunction] => [
+      fn.name,
+      fn
+    ]),
+    ...FloatLib.map((fn: BuiltinFunction): [string, BuiltinFunction] => [
+      fn.name,
+      fn
+    ])
+  ]);
   readonly hooks: IHooks = {
-    beforeRun: []
+    beforeRun: [...beforeRunHooks],
+    afterRun: []
   };
 
   constructor() {}
@@ -44,9 +70,6 @@ export class XLang {
     args: ValueType[],
     fn: (...args: any[]) => any
   ) {
-    if (this.bindedFns.has(name)) {
-      throw new Error(`function ${name} has been defined`);
-    }
     const fnInfo: BuiltinFunction = {
       type,
       args,
@@ -71,6 +94,7 @@ export class XLang {
   }
 
   run(compiled: CompileOut, args: string[] = []) {
+    this.hooks.beforeRun.forEach(fn => fn());
     const code = compiled.code;
     const globalFns = new Map<string, GlobalFunction>(compiled.globalFns);
     const arg = args.map(
