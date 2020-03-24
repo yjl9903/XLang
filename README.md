@@ -4,6 +4,14 @@
 
 A simple programming language with XLex and XParse.
 
+## Install
+
+```bash
+yarn global add @yjl9903/xlang
+# Or
+# npm install -g @yjl9903/xlang
+```
+
 ## Hello World
 
 ```rust
@@ -13,6 +21,10 @@ fn main() {
 ```
 
 This code will print "Hello World!" on your terminal.
+
+## Documentation
+
+See [XLang](https://xlang-docs.netlify.com).
 
 ## License
 
