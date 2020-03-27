@@ -17,9 +17,11 @@ import {
   IOLib
 } from './lib';
 
-const lexer = new Lexer(LexConfig);
+export const XLangLexer = new Lexer(LexConfig);
 
-const parser = new LRParser(SyntaxConfig);
+export const XLangParser = new LRParser(SyntaxConfig);
+
+export { LexConfig, SyntaxConfig };
 
 interface CompileOut {
   ok: true;
@@ -87,8 +89,8 @@ export class XLang {
 
   compile(text: string): CompileOut | CompileErrorOut {
     try {
-      const tokens = lexer.run(text);
-      const ast = parser.parse(tokens, this.bindedFns);
+      const tokens = XLangLexer.run(text);
+      const ast = XLangParser.parse(tokens, this.bindedFns);
       if (ast.ok) {
         return { ok: true, tokens, ...ast.value };
       } else {

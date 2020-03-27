@@ -1,1 +1,7 @@
-export { XLang } from './xlang';
+export {
+  XLang,
+  XLangLexer,
+  XLangParser,
+  LexConfig,
+  SyntaxConfig
+} from './xlang';
