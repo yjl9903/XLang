@@ -22,6 +22,7 @@ export enum ThreeAddressCodeType {
   Minus = 'Minus',
   Mul = 'Mul',
   Div = 'Div',
+  Mod = 'Mod',
   Negative = 'Negative',
   Not = 'Not',
   And = 'And',
@@ -51,6 +52,7 @@ export type BinOPCodeType =
   | 'Minus'
   | 'Mul'
   | 'Div'
+  | 'Mod'
   | 'And'
   | 'Or'
   | CmpOpType;
@@ -156,6 +158,14 @@ export function getBinOPType(
   } else if (op === 'Div') {
     if (a === 'stringType' || b === 'stringType') {
       // throw new Error('string can not div');
+      return undefined;
+    } else if (a === 'floatType' || b === 'floatType') {
+      return 'floatType';
+    } else {
+      return 'numberType';
+    }
+  } else if (op === 'Mod') {
+    if (a === 'stringType' || b === 'stringType') {
       return undefined;
     } else if (a === 'floatType' || b === 'floatType') {
       return 'floatType';

@@ -252,6 +252,13 @@ export function vm(
           ? Math.floor(valueX / valueY)
           : valueX / valueY;
       setValue(divCode.dst, value);
+    },
+    [ThreeAddressCodeType.Mod](code: ThreeAddressCode) {
+      const modCode = code as BinOPCode;
+      const valueX = getValue(modCode.x);
+      const valueY = getValue(modCode.y);
+      const value = valueX % valueY;
+      setValue(modCode.dst, value);
     }
   };
 

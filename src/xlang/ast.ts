@@ -30,6 +30,7 @@ export type BinOPType =
   | 'Minus'
   | 'Mul'
   | 'Div'
+  | 'Mod'
   | 'And'
   | 'Or'
   | CmpOpType;

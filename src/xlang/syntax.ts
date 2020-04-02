@@ -593,6 +593,13 @@ const ExprProduction = [
         }
       },
       {
+        rule: [Factor, 'Mod', Term],
+        reduce(factor: ValueASTNode, mod, term: ValueASTNode) {
+          const type = getBinOPType('Mod', factor.dst.type, term.dst.type);
+          return new BinOPASTNode('Mod', genVariable(type), factor, term);
+        }
+      },
+      {
         rule: [Factor],
         reduce(node: ValueASTNode) {
           return node;

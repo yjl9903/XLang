@@ -93,6 +93,10 @@ const config = {
       rule: '/'
     },
     {
+      type: 'Mod',
+      rule: '%'
+    },
+    {
       type: 'Assign',
       rule: '='
     },
