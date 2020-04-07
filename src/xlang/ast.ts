@@ -228,9 +228,18 @@ export class FunctionASTNode extends BasicASTNode {
     sTable.father = context.symbols;
     context = { ...context, symbols: sTable };
     this.args.visit(context);
+
     const code: ThreeAddressCode[] = [];
     for (const stat of this.statements) {
       code.push(...stat.visit(context).code);
+      if (stat.type === 'FunctionReturn') {
+        break;
+      } else if (
+        stat.type === 'IfStatement' &&
+        (stat as IfStatementASTNode).haveReturn()
+      ) {
+        break;
+      }
     }
 
     // TODO: check function return
@@ -273,6 +282,14 @@ export class StatementListASTNode extends BasicASTNode {
     const code: ThreeAddressCode[] = [];
     for (const stat of this.statements) {
       code.push(...stat.visit(context).code);
+      if (stat.type === 'FunctionReturn') {
+        break;
+      } else if (
+        stat.type === 'IfStatement' &&
+        (stat as IfStatementASTNode).haveReturn()
+      ) {
+        break;
+      }
     }
     return { code };
   }
