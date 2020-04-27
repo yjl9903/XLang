@@ -46,6 +46,8 @@ xlex draw abc
 
 <center><img src="/RegExp.svg" alt="RegExp"></center>
 
+> 已知 BUG：终端中使用 "|" 等字符时会导致命令解析错误。
+
 ## 解析代码文本串
 
 在终端的工作目录下，创建 JavaScript 脚本文件 `xlex.config.js`（默认名称，你也可以使用手动指定文件）。

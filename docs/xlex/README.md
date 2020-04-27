@@ -40,7 +40,7 @@ npm install xlex
 
 ## 原理
 
-XLex 是一个基于[有限状态自动机](https://en.wikipedia.org/wiki/Finite-state_machine)的词法分析器，它接受词法规则的配置对象（命令行工具中使用动态加载 JavaScript 脚本的形式传入）。
+[XLex](https://github.com/yjl9903/XLex) 是一个基于[有限状态自动机](https://en.wikipedia.org/wiki/Finite-state_machine)的词法分析器，它使用词法规则的配置对象（命令行工具中使用动态加载 JavaScript 脚本的形式传入）进行初始化。
 
 XLex 使用一个 [递归下降分析器](https://en.wikipedia.org/wiki/Recursive_descent_parser) 来解析配置信息中的 [正则表达式](/xlex/reg)，构建出一个非确定性有限状态自动机，使用子集构造法将其确定化为确定性有限状态自动机，使用 [Hopcroft 算法](https://en.wikipedia.org/wiki/DFA_minimization#Hopcroft's_algorithm) 将 DFA 最小化。
 
