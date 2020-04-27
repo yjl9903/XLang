@@ -19,13 +19,15 @@ module.exports = {
         title: 'XLex',
         children: [
           '/xlex/',
+          '/xlex/usage',
           '/xlex/reg'
         ]
       },
       {
         title: 'XParse',
         children: [
-          '/xparse/'
+          '/xparse/',
+          '/xparse/usage'
         ]
       }
     ],
