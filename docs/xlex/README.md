@@ -44,4 +44,4 @@ XLex 是一个基于[有限状态自动机](https://en.wikipedia.org/wiki/Finite
 
 XLex 使用一个 [递归下降分析器](https://en.wikipedia.org/wiki/Recursive_descent_parser) 来解析配置信息中的 [正则表达式](/xlex/reg)，构建出一个非确定性有限状态自动机，使用子集构造法将其确定化为确定性有限状态自动机，使用 [Hopcroft 算法](https://en.wikipedia.org/wiki/DFA_minimization#Hopcroft's_algorithm) 将 DFA 最小化。
 
-XLex 将输入文本串放到最终输出的最小化确定性有限状态自动机上运行，得到 Token 流。
+XLex 将输入文本串放到最终输出的最小化确定性有限状态自动机上运行，得到 Token 流。运行时，维护每个正则表达式的匹配结点，使用当前字符转移 DFA 状态，直到所有 DFA 都到达了一个非法状态，此时将第一个匹配到的终止结点作为本次的匹配结果，经过可选的回调函数转换后输出到 Token 流中。
