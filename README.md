@@ -4,6 +4,8 @@
 
 A simple programming language with XLex and XParse.
 
+You can try XLang online in [XLang Playground](https://xlang-docs.netlify.app/).
+
 ## Install
 
 ```bash
@@ -12,7 +14,7 @@ yarn global add @yjl9903/xlang
 # npm install -g @yjl9903/xlang
 ```
 
-## Hello World
+## Example
 
 ```rust
 fn main() {
@@ -21,6 +23,8 @@ fn main() {
 ```
 
 This code will print "Hello World!" on your terminal.
+
+See [examples](https://github.com/yjl9903/XLang/tree/master/examples) for more examples.
 
 ## Documentation
 
