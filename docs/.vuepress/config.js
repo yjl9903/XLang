@@ -12,7 +12,8 @@ module.exports = {
           '/xlang/',
           '/xlang/syntax',
           '/xlang/fn',
-          '/xlang/examples'
+          '/xlang/examples',
+          '/xlang/tac'
         ]
       },
       {
