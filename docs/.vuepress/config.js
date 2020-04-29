@@ -30,6 +30,18 @@ module.exports = {
           '/xparse/',
           '/xparse/usage'
         ]
+      },
+      {
+        title: '原理',
+        children: [
+          '/deep/setmap'
+        ]
+      },
+      {
+        title: '其他应用',
+        children: [
+          '/other/complex-calculator'
+        ]
       }
     ],
     nav: [
@@ -38,5 +50,13 @@ module.exports = {
       { text: 'XLex', link: '/xlex/' },
       { text: 'XParse', link: '/xparse/' }
     ]
-  }
+  },
+  plugins: [
+    [
+      'vuepress-plugin-mathjax',
+      {
+        target: 'svg',
+      }
+    ]
+  ]
 };
