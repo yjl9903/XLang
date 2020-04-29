@@ -34,9 +34,9 @@
     "docs:build": "yarn vuepress build docs"
   },
   "dependencies": {
-    "@yjl9903/xparse": "^1.1.0",
+    "@yjl9903/xparse": "^1.1.1",
     "cac": "^6.5.7",
-    "xlex": "^1.4.0"
+    "xlex": "^1.4.1"
   },
   "devDependencies": {
     "@types/jest": "^25.1.4",
@@ -47,6 +47,7 @@
     "prettier": "^1.19.1",
     "ts-jest": "^25.2.1",
     "typescript": "^3.8.3",
-    "vuepress": "^1.4.0"
+    "vuepress": "^1.4.0",
+    "vuepress-plugin-mathjax": "^1.2.8"
   }
 }
