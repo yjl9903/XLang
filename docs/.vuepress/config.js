@@ -34,7 +34,9 @@ module.exports = {
       {
         title: '原理',
         children: [
-          '/deep/setmap'
+          '/deep/setmap',
+          '/deep/worklist',
+          '/deep/hopcroft'
         ]
       },
       {
@@ -55,7 +57,7 @@ module.exports = {
     [
       'vuepress-plugin-mathjax',
       {
-        target: 'svg',
+        target: 'svg'
       }
     ]
   ]
