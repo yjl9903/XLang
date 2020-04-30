@@ -14,6 +14,6 @@ Hopcroft 算法初始时，将 DFA 状态集合划分为接受状态和非接受
 
 <center><img src="/hopcroft.png" alt="Hopcroft's Algorithm"></center>
 
-伪代码的 $\latex$ 源码见：[pseudocode.tex](https://github.com/yjl9903/XLang/blob/master/docs/deep/pseudocode.tex)。
+伪代码的 $\LaTeX$ 源码见：[pseudocode.tex](https://github.com/yjl9903/XLang/blob/master/docs/deep/pseudocode.tex)。
 
 XLex 的 Hopcroft 算法实现见：[dfa.ts minimize 方法](https://github.com/yjl9903/XLex/blob/master/src/reg/dfa.ts#L133)。
