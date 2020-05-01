@@ -12,7 +12,38 @@ Hopcroft 算法初始时，将 DFA 状态集合划分为接受状态和非接受
 
 首先给出实现的伪代码。
 
-<center><img src="/hopcroft.png" alt="Hopcroft's Algorithm"></center>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css">
+<pseudocode lineNumber lineNumberPunc=" ">
+\begin{algorithm}
+  \caption{Hopcroft's algorithm}
+  \begin{algorithmic}
+    \Input{ DFA States $S$, final states $F$ and alphabet $\Sigma$ }
+    \Output{ minimum number }
+    \PROCEDURE{minimize}{$S, F, \Sigma$}
+      \STATE $P \leftarrow \{ F, S - F \}$
+      \STATE $WL \leftarrow \{ F, S - F \}$
+      \WHILE{ $W$ is not empty }
+        \STATE choose and remove a set $A$ from $WL$
+        \FOR{$c$ in $\Sigma$}
+          \STATE $X \leftarrow$ sets of states which has a transition on $c$ leads to a state in $A$
+          \FOR{$Y$ in $P$ and $Y \cap X \neq \varnothing$ and $Y - X \neq \varnothing$}
+            \STATE replace $Y$ in $P$ by $Y \cap X$ and $Y - X$
+            \IF{$Y$ in $WL$}
+              \STATE replace $Y$ in $WL$ by $Y \cap X$ and $Y - X$
+            \ELSE
+              \IF{ $|Y \cap X| \le |Y - X|$ }
+                \STATE add $Y \cap X$ to $WL$
+              \ELSE
+                \STATE add $Y - X$ to $WL$
+              \ENDIF
+            \ENDIF
+          \ENDFOR
+        \ENDFOR
+      \ENDWHILE
+    \ENDPROCEDURE
+  \end{algorithmic}
+\end{algorithm}
+</pseudocode>
 
 > 伪代码的 $\LaTeX$ 源码见：[pseudocode.tex](https://github.com/yjl9903/XLang/blob/master/docs/deep/pseudocode.tex)。
 

@@ -5617,6 +5617,13 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
+katex@^0.8.0:
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/katex/-/katex-0.8.3.tgz#909d99864baf964c3ccae39c4a99a8e0fb9a1bd0"
+  integrity sha512-0VKw+G/wvgLKMy4fhhKdPGjXehYF3l3PBRdzkvBivK5wMtAH9xRHImQaGk9gaukBTdOfZ1Biq8kL5vgkUsBT0Q==
+  dependencies:
+    match-at "^0.1.0"
+
 keyv@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/keyv/-/keyv-3.1.0.tgz#ecc228486f69991e49e9476485a5be1e8fc5c4d9"
@@ -6030,12 +6037,22 @@ markdown-it@^8.4.1:
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
+match-at@^0.1.0:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/match-at/-/match-at-0.1.1.tgz#25d040d291777704d5e6556bbb79230ec2de0540"
+  integrity sha512-h4Yd392z9mST+dzc+yjuybOGFNOZjmXIPKWjxBd1Bb23r4SmDOsk2NYCU2BMUBGbSpZqwVsZYNq26QS3xfaT3Q==
+
 mathjax3@3.0.0-beta.3:
   version "3.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/mathjax3/-/mathjax3-3.0.0-beta.3.tgz#c3072a59304b4b612aa9516eb672b07000c9a3d5"
   integrity sha512-MgXK56KOLk5b8/Y01RXB/C0+QgC2Kc+SJmKBilP+Jwxout/4SdV8AjsPp+WMzlotnAacQWFpn24CPdLkdej9AA==
   dependencies:
     esm "^3.0.34"
+
+mathjax@^2.7.5:
+  version "2.7.8"
+  resolved "https://registry.yarnpkg.com/mathjax/-/mathjax-2.7.8.tgz#c883f483c4f4abe525b7a3dea16abecf663f2a6a"
+  integrity sha512-n4xZJ+cw7o01YOSVhxxjyOmibqBPCi+XTDof4siq78QWMx7Fxjzgb/mxMUEElMzTDodMV7ENIMsjREOSldOQPw==
 
 md5.js@^1.3.4:
   version "1.3.5"
@@ -7420,6 +7437,14 @@ prr@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/prr/-/prr-1.0.1.tgz#d3fc114ba06995a45ec6893f484ceb1d78f5f476"
   integrity sha1-0/wRS6BplaRexok/SEzrHXj19HY=
+
+pseudocode@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/pseudocode/-/pseudocode-2.1.1.tgz#355ddcabb7a89641dd295930a932e11a16eea198"
+  integrity sha512-nip9Gqj5+3hzsfNIuZt06AbZWQXFN4GqYGGEOb1xya2YKbKCfx6CY0P97JwWOPFGY6vWvuO0E4bxqji+2u0L4A==
+  optionalDependencies:
+    katex "^0.8.0"
+    mathjax "^2.7.5"
 
 pseudomap@^1.0.2:
   version "1.0.2"
