@@ -244,7 +244,7 @@ export const StringLib: BuiltinFunction[] = [
   {
     name: 'String::to_float',
     args: ['stringType'],
-    type: 'numberType',
+    type: 'floatType',
     fn(s: string) {
       return parseFloat(s);
     }
