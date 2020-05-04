@@ -13,7 +13,7 @@ module.exports = {
           '/xlang/syntax',
           '/xlang/fn',
           '/xlang/examples',
-          '/xlang/tac'
+          '/xlang/deep'
         ]
       },
       {
