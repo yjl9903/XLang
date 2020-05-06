@@ -50,7 +50,7 @@ TERM_SUFFIX -> ?
 FACTOR -> <ASCII 码字符>
 FACTOR -> [ RANGE ]
 FACTOR -> ( EXPR )
-FACTOR -> \ <转移字符>
+FACTOR -> \ <转义字符>
 
 RANGE -> RANGE_ITEM RANGE_REST
 RANGE_REST -> ε
