@@ -4,7 +4,7 @@
 
 A simple programming language with XLex and XParse.
 
-You can try XLang online in [XLang Playground](https://xlang-docs.netlify.app/).
+You can try XLang online in [XLang Playground](https://xlang.netlify.app/).
 
 ## Install
 
