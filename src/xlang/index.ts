@@ -14,7 +14,7 @@ import {
   NumberLib,
   FloatLib,
   ArrayLib,
-  IOLib
+  IOLib,
 } from './lib';
 
 export const XLangLexer = new Lexer(LexConfig);
@@ -46,28 +46,28 @@ export class XLang {
   readonly bindedFns = new Map<string, BuiltinFunction>([
     ...IOLib.map((fn: BuiltinFunction): [string, BuiltinFunction] => [
       fn.name,
-      fn
+      fn,
     ]),
     ...ArrayLib.map((fn: BuiltinFunction): [string, BuiltinFunction] => [
       fn.name,
-      fn
+      fn,
     ]),
     ...StringLib.map((fn: BuiltinFunction): [string, BuiltinFunction] => [
       fn.name,
-      fn
+      fn,
     ]),
     ...NumberLib.map((fn: BuiltinFunction): [string, BuiltinFunction] => [
       fn.name,
-      fn
+      fn,
     ]),
     ...FloatLib.map((fn: BuiltinFunction): [string, BuiltinFunction] => [
       fn.name,
-      fn
-    ])
+      fn,
+    ]),
   ]);
   readonly hooks: IHooks = {
     beforeRun: [...beforeRunHooks],
-    afterRun: [...afterRunHooks]
+    afterRun: [...afterRunHooks],
   };
 
   constructor() {}
@@ -82,7 +82,7 @@ export class XLang {
       type,
       args,
       name,
-      fn
+      fn,
     };
     this.bindedFns.set(name, fnInfo);
   }
@@ -96,30 +96,28 @@ export class XLang {
       } else {
         return { ok: false, token: ast.token };
       }
-    } catch (error) {
+    } catch (error: any) {
       return { ok: false, message: error.message };
     }
   }
 
   run(compiled: CompileOut, args: string[] = [], input: string[] = []) {
-    this.hooks.beforeRun.forEach(fn => fn(input));
+    this.hooks.beforeRun.forEach((fn) => fn(input));
     const code = compiled.code;
     const globalFns = new Map<string, GlobalFunction>(compiled.globalFns);
-    const arg = args.map(
-      (value: string): LiteralCode => {
-        if (!isNaN(parseInt(value))) {
-          return { value: parseInt(value), type: 'numberType' };
-        } else if (!isNaN(parseFloat(value))) {
-          return { value: parseFloat(value), type: 'floatType' };
-        } else if (value === 'true') {
-          return { value: true, type: 'boolType' };
-        } else if (value === 'false') {
-          return { value: false, type: 'boolType' };
-        } else {
-          return { value, type: 'stringType' };
-        }
+    const arg = args.map((value: string): LiteralCode => {
+      if (!isNaN(parseInt(value))) {
+        return { value: parseInt(value), type: 'numberType' };
+      } else if (!isNaN(parseFloat(value))) {
+        return { value: parseFloat(value), type: 'floatType' };
+      } else if (value === 'true') {
+        return { value: true, type: 'boolType' };
+      } else if (value === 'false') {
+        return { value: false, type: 'boolType' };
+      } else {
+        return { value, type: 'stringType' };
       }
-    );
+    });
     const mainArg: ValueType[] = compiled.root.main?.getArgsType() || [];
     if (mainArg.length > arg.length) {
       throw new Error(

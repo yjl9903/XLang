@@ -9,16 +9,18 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [12.x, 14.x]
 
     steps:
     - uses: actions/checkout@v2
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 6.27.1
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - run: yarn install
-    - run: yarn build
-    - run: yarn test
-      env:
-        CI: true
+        cache: pnpm
+    - run: pnpm install --frozen-lockfile
+    - run: pnpm run build
+    - run: pnpm run test
