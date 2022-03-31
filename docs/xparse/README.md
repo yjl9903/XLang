@@ -29,9 +29,7 @@ xparse --version
 在你的项目根目录下，输入以下命令，即可引入 XParse。
 
 ```bash
-npm install @LonelyKuma/XParse
-# or
-# yarn add @LonelyKuma/XParse
+npm install @xlor/xparse
 ```
 
 ## 原理

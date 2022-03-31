@@ -33,9 +33,7 @@ XLang 的核心代码只依赖于 JavaScript 核心代码库，不依赖于特�
 在你的项目根目录下，输入以下命令，即可引入 XLang。
 
 ```bash
-npm install @yjl9903/xlang
-# or
-# yarn add @yjl9903/xlang
+npm install @xlor/xlang
 ```
 
 ## 原理

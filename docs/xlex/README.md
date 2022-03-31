@@ -31,9 +31,7 @@ XLex 的核心代码不依赖于任何 Node.js 和浏览器环境中的特定的
 在你的项目根目录下，输入以下命令，即可引入 XLex。
 
 ```bash
-npm install xlex
-# or
-# yarn add xlex
+npm install @xlor/xlex
 ```
 
 ## 原理
