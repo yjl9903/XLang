@@ -9,9 +9,7 @@ You can try XLang online in [XLang Playground](https://xlang.netlify.app/).
 ## Install
 
 ```bash
-yarn global add @yjl9903/xlang
-# Or
-# npm install -g @yjl9903/xlang
+npm install -g @xlor/xlang
 ```
 
 ## Example
