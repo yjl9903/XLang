@@ -1,20 +1,18 @@
 import path from 'path';
 import { promises } from 'fs';
-import { beforeAll, test, expect } from 'vitest';
+import { test, expect } from 'vitest';
 
 import { XLang } from '../src/xlang';
 
 const runtime = new XLang();
 
+runtime.addFn('print', 'voidType', ['stringType'], (text: string) => {
+  console.log(text);
+});
+
 async function read(name: string) {
   return await promises.readFile(path.resolve('examples', name), 'utf-8');
 }
-
-beforeAll(() => {
-  runtime.addFn('print', 'voidType', ['stringType'], (text: string) => {
-    console.log(text);
-  });
-});
 
 test('HelloWorld', async () => {
   const helloWorld = await read('helloworld.xl');
