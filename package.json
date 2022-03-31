@@ -16,6 +16,8 @@
   ],
   "scripts": {
     "build": "unbuild",
+    "docs:build": "vuepress build docs",
+    "docs:dev": "vuepress dev docs",
     "format": "prettier --write src/**/*.ts test/**/*.ts",
     "release": "bumpp --commit --push --tag && pnpm publish --access public",
     "test": "vitest",
