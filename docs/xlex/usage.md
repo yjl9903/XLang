@@ -10,10 +10,10 @@ title: 使用 XLex 命令行工具
 xlex --help
 ```
 
-[XLex v1.4.1](https://www.npmjs.com/package/xlex) 的帮助内容如下所示。
+[XLex v1.0.1](https://www.npmjs.com/package/@xlor/xlex) 的帮助内容如下所示。
 
 ```text
-XLex v1.4.0
+XLex/1.0.1
 
 Usage:
   $ XLex
@@ -21,10 +21,12 @@ Usage:
 Commands:
   draw <reg> [name]  Draw DAG of the RegExp
                      Generate Token
+  build              Build lexer
 
 For more info, run any command with the `--help` flag:
   $ XLex draw --help
   $ XLex --help
+  $ XLex build --help
 
 Options:
   --config <config>  Config file path (default: xlex.config)

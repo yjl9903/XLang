@@ -10,10 +10,10 @@ title: 使用 XParse 命令行工具
 xparse --help
 ```
 
-[XParse v1.1.0](https://www.npmjs.com/package/@LonelyKuma/XParse) 的帮助内容如下所示。
+[XParse v1.0.1](https://www.npmjs.com/package/@xlor/xparse) 的帮助内容如下所示。
 
 ```text
-XParse v1.1.0
+XParse/1.0.1
 
 Usage:
   $ XParse
