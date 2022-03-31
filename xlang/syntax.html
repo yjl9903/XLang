@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>语法 | XLang</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/favicon.png">
+    <meta name="description" content="A Simple Programming Language Powered by XLex and XParse.">
+    
+    <link rel="preload" href="/assets/css/0.styles.680745fd.css" as="style"><link rel="preload" href="/assets/js/app.f5e6def7.js" as="script"><link rel="preload" href="/assets/js/2.8b492b7e.js" as="script"><link rel="preload" href="/assets/js/18.9def0742.js" as="script"><link rel="prefetch" href="/assets/js/10.bd9d8196.js"><link rel="prefetch" href="/assets/js/11.56940f5c.js"><link rel="prefetch" href="/assets/js/12.120d72ef.js"><link rel="prefetch" href="/assets/js/13.9d3123d5.js"><link rel="prefetch" href="/assets/js/14.4b9bbd83.js"><link rel="prefetch" href="/assets/js/15.80d5cc20.js"><link rel="prefetch" href="/assets/js/16.9a2bf8b9.js"><link rel="prefetch" href="/assets/js/17.1bfb87bc.js"><link rel="prefetch" href="/assets/js/19.8275e46b.js"><link rel="prefetch" href="/assets/js/20.a1fca922.js"><link rel="prefetch" href="/assets/js/21.88a55443.js"><link rel="prefetch" href="/assets/js/22.7ecc4734.js"><link rel="prefetch" href="/assets/js/23.546db149.js"><link rel="prefetch" href="/assets/js/3.dd66873b.js"><link rel="prefetch" href="/assets/js/4.a7f51ca2.js"><link rel="prefetch" href="/assets/js/5.44f1ea06.js"><link rel="prefetch" href="/assets/js/6.962ff319.js"><link rel="prefetch" href="/assets/js/7.25da0c18.js"><link rel="prefetch" href="/assets/js/8.9dda87bb.js"><link rel="prefetch" href="/assets/js/9.2ff73d2a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.680745fd.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">XLang</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/xlang/" class="nav-link router-link-active">
+  XLang
+</a></div><div class="nav-item"><a href="/xlex/" class="nav-link">
+  XLex
+</a></div><div class="nav-item"><a href="/xparse/" class="nav-link">
+  XParse
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/xlang/" class="nav-link router-link-active">
+  XLang
+</a></div><div class="nav-item"><a href="/xlex/" class="nav-link">
+  XLex
+</a></div><div class="nav-item"><a href="/xparse/" class="nav-link">
+  XParse
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>XLang</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xlang/" aria-current="page" class="sidebar-link">XLang 介绍</a></li><li><a href="/xlang/syntax.html" aria-current="page" class="active sidebar-link">语法</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/xlang/syntax.html#程序入口" class="sidebar-link">程序入口</a></li><li class="sidebar-sub-header"><a href="/xlang/syntax.html#变量声明" class="sidebar-link">变量声明</a></li><li class="sidebar-sub-header"><a href="/xlang/syntax.html#流程控制" class="sidebar-link">流程控制</a></li><li class="sidebar-sub-header"><a href="/xlang/syntax.html#函数声明" class="sidebar-link">函数声明</a></li></ul></li><li><a href="/xlang/fn.html" class="sidebar-link">内置函数</a></li><li><a href="/xlang/examples.html" class="sidebar-link">示例</a></li><li><a href="/xlang/deep.html" class="sidebar-link">原理和设计</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>XLex</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>XParse</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>原理</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>其他应用</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="程序入口"><a href="#程序入口" class="header-anchor">#</a> 程序入口</h2> <p>一个 XLang 的代码，必须包含 <code>main</code> 函数，作为程序的入口点。</p> <div class="language-rust extra-class"><pre class="language-rust"><code><span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// main entry...</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>main</code> 函数还允许你定义一些参数。</p> <div class="language-rust extra-class"><pre class="language-rust"><code><span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span>n<span class="token punctuation">:</span> number<span class="token punctuation">,</span> <span class="token keyword">str</span><span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// main entry...</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这些参数可以传入给 XLang 的命令行，在代码编译完成，即将运行时，会自动转换成相应的类型，传入 <code>main</code> 函数中。</p> <h2 id="变量声明"><a href="#变量声明" class="header-anchor">#</a> 变量声明</h2> <p>XLang 允许两种变量声明的方式，一种是声明可变变量 <code>let</code>，另一种是声明不可变变量 <code>const</code>。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> c <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token string">&quot;immutable&quot;</span><span class="token punctuation">;</span>
+</code></pre></div><p>没有声明类型？习惯 <code>C/C++</code> 和 <code>Java</code> 等语言风格的人会对此感到困惑。</p> <p>同 <code>TypeScript</code>，<code>Rust</code> 等语言一样，XLang 会自动推导出 <code>a</code> 的类型是整数，<code>b</code> 的类型是字符串。</p> <p>XLang 中内置的数据类型有 <code>number</code>，<code>float</code>，<code>string</code>，<code>bool</code> 四种。</p> <p>你也手动指定出一个变量的类型，在通常情况下这并不是必要。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">let</span> a<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> b<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token string">&quot;immutable&quot;</span><span class="token punctuation">;</span>
+</code></pre></div><p>使用可变变量声明时，若没有初始值，则它的类型会在首次赋值时确定。</p> <p>使用不可变变量声明时，必须初始化。</p> <p>如果同时使用了初始化和类型声明，你必须保证类型是兼容的。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">let</span> a<span class="token punctuation">;</span>
+<span class="token keyword">const</span> b<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> <span class="token comment">// Error: const variable b is not initialized</span>
+<span class="token keyword">const</span> c<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token string">&quot;123&quot;</span><span class="token punctuation">;</span> <span class="token comment">// Error: variable c's type not match</span>
+<span class="token keyword">const</span> d <span class="token operator">=</span> a<span class="token punctuation">;</span> <span class="token comment">// Error: variable a is not initialized</span>
+</code></pre></div><p>局部变量的声明存在块状的作用域。</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token punctuation">{</span>
+  <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> b <span class="token operator">=</span> a <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">const</span> c <span class="token operator">=</span> b <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// Error: variable b is not defined</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="流程控制"><a href="#流程控制" class="header-anchor">#</a> 流程控制</h2> <p>类似于 <code>C/C++</code> 和 <code>JavaScript</code> 等语言，你可以写以下这些流程控制语句。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// code here...</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// code here...</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token comment">// code here...</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// code here...</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// code here...</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>注意所有条件判断必须返回 <code>bool</code> 类型，XLang 不会将数字等类型隐式转换为 <code>bool</code>。</p> <h2 id="函数声明"><a href="#函数声明" class="header-anchor">#</a> 函数声明</h2> <p>在函数体外，你可以声明全局作用域的函数。</p> <p>使用关键字 <code>fn</code> 开头声明一个函数，圆括号内写参数列表，这里参数必须显式地指明数据类型。</p> <p>如果函数有返回值，你必须在后面用箭头 <code>-&gt;</code> 标出返回类型。否则，你可以省略这个声明。</p> <div class="language-rust extra-class"><pre class="language-rust"><code><span class="token keyword">fn</span> <span class="token function-definition function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Hello&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">fn</span> <span class="token function-definition function">cal</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> number<span class="token punctuation">)</span> <span class="token punctuation">-&gt;</span> number <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> a <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>XLang 在代码生成的过程中，会对有返回值的函数的返回情况做粗略的检查。</p> <p>在下面的情况中，可能存在一个分支没用返回值，这将无法通过 XLang 的编译。</p> <div class="language-rust extra-class"><pre class="language-rust"><code><span class="token keyword">fn</span> <span class="token function-definition function">cal</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> number<span class="token punctuation">)</span> <span class="token punctuation">-&gt;</span> number <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;not return&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Error: function &quot;cal&quot; does not have Return statement</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/xlang/" class="prev router-link-active">
+        XLang 介绍
+      </a></span> <span class="next"><a href="/xlang/fn.html">
+        内置函数
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.f5e6def7.js" defer></script><script src="/assets/js/2.8b492b7e.js" defer></script><script src="/assets/js/18.9def0742.js" defer></script>
+  </body>
+</html>

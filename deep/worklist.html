@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Worklist 算法 | XLang</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/favicon.png">
+    <meta name="description" content="A Simple Programming Language Powered by XLex and XParse.">
+    
+    <link rel="preload" href="/assets/css/0.styles.680745fd.css" as="style"><link rel="preload" href="/assets/js/app.f5e6def7.js" as="script"><link rel="preload" href="/assets/js/2.8b492b7e.js" as="script"><link rel="preload" href="/assets/js/12.120d72ef.js" as="script"><link rel="prefetch" href="/assets/js/10.bd9d8196.js"><link rel="prefetch" href="/assets/js/11.56940f5c.js"><link rel="prefetch" href="/assets/js/13.9d3123d5.js"><link rel="prefetch" href="/assets/js/14.4b9bbd83.js"><link rel="prefetch" href="/assets/js/15.80d5cc20.js"><link rel="prefetch" href="/assets/js/16.9a2bf8b9.js"><link rel="prefetch" href="/assets/js/17.1bfb87bc.js"><link rel="prefetch" href="/assets/js/18.9def0742.js"><link rel="prefetch" href="/assets/js/19.8275e46b.js"><link rel="prefetch" href="/assets/js/20.a1fca922.js"><link rel="prefetch" href="/assets/js/21.88a55443.js"><link rel="prefetch" href="/assets/js/22.7ecc4734.js"><link rel="prefetch" href="/assets/js/23.546db149.js"><link rel="prefetch" href="/assets/js/3.dd66873b.js"><link rel="prefetch" href="/assets/js/4.a7f51ca2.js"><link rel="prefetch" href="/assets/js/5.44f1ea06.js"><link rel="prefetch" href="/assets/js/6.962ff319.js"><link rel="prefetch" href="/assets/js/7.25da0c18.js"><link rel="prefetch" href="/assets/js/8.9dda87bb.js"><link rel="prefetch" href="/assets/js/9.2ff73d2a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.680745fd.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">XLang</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/xlang/" class="nav-link">
+  XLang
+</a></div><div class="nav-item"><a href="/xlex/" class="nav-link">
+  XLex
+</a></div><div class="nav-item"><a href="/xparse/" class="nav-link">
+  XParse
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/xlang/" class="nav-link">
+  XLang
+</a></div><div class="nav-item"><a href="/xlex/" class="nav-link">
+  XLex
+</a></div><div class="nav-item"><a href="/xparse/" class="nav-link">
+  XParse
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>XLang</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>XLex</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>XParse</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>原理</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/deep/setmap.html" class="sidebar-link">SetMap</a></li><li><a href="/deep/worklist.html" aria-current="page" class="active sidebar-link">Worklist 算法</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/deep/worklist.html#动机" class="sidebar-link">动机</a></li><li class="sidebar-sub-header"><a href="/deep/worklist.html#启发" class="sidebar-link">启发</a></li></ul></li><li><a href="/deep/hopcroft.html" class="sidebar-link">Hopcroft 算法</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>其他应用</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="动机"><a href="#动机" class="header-anchor">#</a> 动机</h2> <p>在数据流分析中，有一个基于迭代算法的分析框架（下图为一个正向 May 数据流分析的算法伪代码）。</p> <center><img src="/iterative.png" alt="Iterative Algorithm"></center> <blockquote><p>引用自李樾和谭添老师的 <a href="https://pascal-group.bitbucket.io/teaching.html" target="_blank" rel="noopener noreferrer">Software Analysis / Static Program Analysis<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 课程讲义。</p></blockquote> <p>这个迭代算法在最坏情况下时间复杂度可能达到答案规模乘一轮迭代的时间，有一个优化就是使用 Worklist 算法。</p> <p>观察上述算法，每个基本块的 IN 实际上依赖于控制流图的所有前驱结点的 OUT，而这个基本块 OUT 依赖于块内的 GEN/KILL 信息和 IN，因此 OUT 的变化也会依赖于 IN 的变化。</p> <center><img src="/worklist.png" alt="Worklist Algorithm"></center> <p>在 Worklist 算法中，我们维护一个任务队列（Worklist），每当一个基本块的 OUT 变化时，他的后继才有可能变化，此时将这些后继放入任务队列中，当任务队列为空时，算法结束，会得到一个与迭代算法相同的结果。</p> <h2 id="启发"><a href="#启发" class="header-anchor">#</a> 启发</h2> <p>Worklist 算法启发了我，在构造 LR(1) 项目集族自动机时也使用了一个迭代算法。</p> <center><img src="/lr.png" alt="构造 LR(1) 项目集族的算法"></center> <blockquote><p>引用自《编译原理 - 第二版》。</p></blockquote> <p>在求闭包和构造项集时都使用了迭代算法，可以发现都是相同的项目（项目集）产生相同的输出，我们用类似 Worklist 算法的想法也能优化这里构造的迭代算法。</p> <p>具体实现参考：<a href="https://github.com/LonelyKuma/XParse/blob/master/src/LRparser/LRdfa.ts#L127" target="_blank" rel="noopener noreferrer">LRdfa.ts<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/deep/setmap.html" class="prev">
+        SetMap
+      </a></span> <span class="next"><a href="/deep/hopcroft.html">
+        Hopcroft 算法
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.f5e6def7.js" defer></script><script src="/assets/js/2.8b492b7e.js" defer></script><script src="/assets/js/12.120d72ef.js" defer></script>
+  </body>
+</html>

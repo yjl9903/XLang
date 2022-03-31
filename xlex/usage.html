@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用 XLex 命令行工具 | XLang</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/favicon.png">
+    <meta name="description" content="A Simple Programming Language Powered by XLex and XParse.">
+    
+    <link rel="preload" href="/assets/css/0.styles.680745fd.css" as="style"><link rel="preload" href="/assets/js/app.f5e6def7.js" as="script"><link rel="preload" href="/assets/js/2.8b492b7e.js" as="script"><link rel="preload" href="/assets/js/21.88a55443.js" as="script"><link rel="prefetch" href="/assets/js/10.bd9d8196.js"><link rel="prefetch" href="/assets/js/11.56940f5c.js"><link rel="prefetch" href="/assets/js/12.120d72ef.js"><link rel="prefetch" href="/assets/js/13.9d3123d5.js"><link rel="prefetch" href="/assets/js/14.4b9bbd83.js"><link rel="prefetch" href="/assets/js/15.80d5cc20.js"><link rel="prefetch" href="/assets/js/16.9a2bf8b9.js"><link rel="prefetch" href="/assets/js/17.1bfb87bc.js"><link rel="prefetch" href="/assets/js/18.9def0742.js"><link rel="prefetch" href="/assets/js/19.8275e46b.js"><link rel="prefetch" href="/assets/js/20.a1fca922.js"><link rel="prefetch" href="/assets/js/22.7ecc4734.js"><link rel="prefetch" href="/assets/js/23.546db149.js"><link rel="prefetch" href="/assets/js/3.dd66873b.js"><link rel="prefetch" href="/assets/js/4.a7f51ca2.js"><link rel="prefetch" href="/assets/js/5.44f1ea06.js"><link rel="prefetch" href="/assets/js/6.962ff319.js"><link rel="prefetch" href="/assets/js/7.25da0c18.js"><link rel="prefetch" href="/assets/js/8.9dda87bb.js"><link rel="prefetch" href="/assets/js/9.2ff73d2a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.680745fd.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">XLang</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/xlang/" class="nav-link">
+  XLang
+</a></div><div class="nav-item"><a href="/xlex/" class="nav-link router-link-active">
+  XLex
+</a></div><div class="nav-item"><a href="/xparse/" class="nav-link">
+  XParse
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/xlang/" class="nav-link">
+  XLang
+</a></div><div class="nav-item"><a href="/xlex/" class="nav-link router-link-active">
+  XLex
+</a></div><div class="nav-item"><a href="/xparse/" class="nav-link">
+  XParse
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>XLang</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>XLex</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xlex/" aria-current="page" class="sidebar-link">XLex 介绍</a></li><li><a href="/xlex/usage.html" aria-current="page" class="active sidebar-link">使用 XLex 命令行工具</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/xlex/usage.html#获取帮助" class="sidebar-link">获取帮助</a></li><li class="sidebar-sub-header"><a href="/xlex/usage.html#正则表达式绘图" class="sidebar-link">正则表达式绘图</a></li><li class="sidebar-sub-header"><a href="/xlex/usage.html#解析代码文本串" class="sidebar-link">解析代码文本串</a></li></ul></li><li><a href="/xlex/reg.html" class="sidebar-link">正则表达式</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>XParse</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>原理</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>其他应用</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="获取帮助"><a href="#获取帮助" class="header-anchor">#</a> 获取帮助</h2> <p>在终端中输入以下命令，即可查看命令行工具的帮助。</p> <div class="language-bash extra-class"><pre class="language-bash"><code>xlex --help
+</code></pre></div><p><a href="https://www.npmjs.com/package/@xlor/xlex" target="_blank" rel="noopener noreferrer">XLex v1.0.1<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 的帮助内容如下所示。</p> <div class="language-text extra-class"><pre class="language-text"><code>XLex/1.0.1
+
+Usage:
+  $ XLex
+
+Commands:
+  draw &amp;lt;reg&gt; [name]  Draw DAG of the RegExp
+                     Generate Token
+  build              Build lexer
+
+For more info, run any command with the `--help` flag:
+  $ XLex draw --help
+  $ XLex --help
+  $ XLex build --help
+
+Options:
+  --config &amp;lt;config&gt;  Config file path (default: xlex.config)
+  -h, --help         Display this message
+  -v, --version      Display version number
+</code></pre></div><h2 id="正则表达式绘图"><a href="#正则表达式绘图" class="header-anchor">#</a> 正则表达式绘图</h2> <p>请确保你的计算机已经安装了 <a href="https://www.graphviz.org/" target="_blank" rel="noopener noreferrer">Graphviz<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>。</p> <p>在终端中输入以下命令，即可得到正则表达式 <code>abc</code> 的图片。</p> <div class="language-bash extra-class"><pre class="language-bash"><code>xlex draw abc
+</code></pre></div><p>你会在当前工作目录下得到一个名为 <code>RegExp.svg</code> 的图片，如下图所示。</p> <center><img src="/RegExp.svg" alt="RegExp"></center> <blockquote><p>已知 BUG：终端中使用 &quot;|&quot; 等字符时会导致命令解析错误。</p></blockquote> <h2 id="解析代码文本串"><a href="#解析代码文本串" class="header-anchor">#</a> 解析代码文本串</h2> <p>在终端的工作目录下，创建 JavaScript 脚本文件 <code>xlex.config.js</code>（默认名称，你也可以使用手动指定文件）。</p> <p>接下来构造一个简单的词法规则，用于解析一个简单的整数算术表达式。</p> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">hooks</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">tokens</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'Number'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">rule</span><span class="token operator">:</span> <span class="token string">'[0-9]+'</span><span class="token punctuation">,</span>
+      <span class="token function">callback</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> type<span class="token punctuation">,</span> value <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+          type<span class="token punctuation">,</span>
+          <span class="token literal-property property">value</span><span class="token operator">:</span> Number<span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'Plus'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">rule</span><span class="token operator">:</span> <span class="token string">'\\+'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'Minus'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">rule</span><span class="token operator">:</span> <span class="token string">'-'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'Mul'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">rule</span><span class="token operator">:</span> <span class="token string">'\\*'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'Div'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">rule</span><span class="token operator">:</span> <span class="token string">'/'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'LRound'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">rule</span><span class="token operator">:</span> <span class="token string">'\\('</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'RRound'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">rule</span><span class="token operator">:</span> <span class="token string">'\\)'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>关于配置脚本的编写：</p> <ul><li><p>你必须使用 <a href="http://www.commonjs.org/" target="_blank" rel="noopener noreferrer">CommonJS<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 规范，将配置对象作为模块进行导出；</p></li> <li><p>配置对象包含两个属性（完整类型定义见 <a href="https://github.com/LonelyKuma/XLex/blob/master/src/lexer/type.ts#L27" target="_blank" rel="noopener noreferrer">type.ts<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>）：</p> <ul><li><p><code>hooks</code>：可选项，配置词法分析的预处理和后处理钩子函数，你可以定义 <code>beforeCreate()</code> 和 <code>created()</code> 两个函数；</p></li> <li><p><code>tokens</code>：必选项，词法规则对象数组，每个对象包含以下属性：</p> <ul><li><p><code>type</code>：Token 的名称；</p></li> <li><p><code>rule</code>：Token 的正则表达式规则；</p></li> <li><p><code>callback</code>：可选项，解析到这类 Token 时触发的回调函数，你可以在这里编写一些数据转换逻辑或者错误处理。它接受一个对象作为参数，包含两个属性，<code>type</code> 表示该 Token 的名称，<code>value</code> 表示该 Token 对应的真实字符串。你的回调函数也应该返回该类型的对象。</p></li></ul></li></ul></li></ul> <p>保存配置脚本，创建一个纯文本文件（假定名称为 <code>code.txt</code>），编辑你的代码文件。例如：</p> <div class="language-text extra-class"><pre class="language-text"><code>1 + 2 * (3 + 4)
+</code></pre></div><p>现在，你只需要在终端中运行 <code>xlex</code> 命令，并将这个文件重定向到该命令的标准输入流中即可。命令示例：</p> <p>Linux 终端或 Windows 控制台：</p> <div class="language-bash extra-class"><pre class="language-bash"><code>xlex <span class="token operator">&lt;</span> code.txt
+</code></pre></div><p>Windows PowerShell：</p> <div class="language-powershell extra-class"><pre class="language-powershell"><code><span class="token function">Get-Content</span> code<span class="token punctuation">.</span>txt <span class="token punctuation">|</span> xlex
+</code></pre></div><p>输出结果：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Number&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;position&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;row&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;col&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;length&quot;</span><span class="token operator">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Plus&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;+&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;position&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;row&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;col&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;length&quot;</span><span class="token operator">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Number&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;position&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;row&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;col&quot;</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;length&quot;</span><span class="token operator">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Mul&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;*&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;position&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;row&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;col&quot;</span><span class="token operator">:</span> <span class="token number">6</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;length&quot;</span><span class="token operator">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LRound&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;(&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;position&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;row&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;col&quot;</span><span class="token operator">:</span> <span class="token number">8</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;length&quot;</span><span class="token operator">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Number&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;position&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;row&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;col&quot;</span><span class="token operator">:</span> <span class="token number">9</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;length&quot;</span><span class="token operator">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Plus&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;+&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;position&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;row&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;col&quot;</span><span class="token operator">:</span> <span class="token number">11</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;length&quot;</span><span class="token operator">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Number&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;position&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;row&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;col&quot;</span><span class="token operator">:</span> <span class="token number">13</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;length&quot;</span><span class="token operator">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;RRound&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;)&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;position&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;row&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;col&quot;</span><span class="token operator">:</span> <span class="token number">14</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;length&quot;</span><span class="token operator">:</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p>输出内容是一个 <code>JSON</code> 格式的对象数组，每个对象包含 3 个属性。</p> <ul><li><p><code>type</code>：Token 名称；</p></li> <li><p><code>value</code>：Token 的词法值；</p></li> <li><p><code>position</code>：Token 出现的行号，列号，以及字符串的长度（回调函数调用前）。</p></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/xlex/" class="prev router-link-active">
+        XLex 介绍
+      </a></span> <span class="next"><a href="/xlex/reg.html">
+        正则表达式
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.f5e6def7.js" defer></script><script src="/assets/js/2.8b492b7e.js" defer></script><script src="/assets/js/21.88a55443.js" defer></script>
+  </body>
+</html>

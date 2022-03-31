@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>正则表达式 | XLang</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/favicon.png">
+    <meta name="description" content="A Simple Programming Language Powered by XLex and XParse.">
+    
+    <link rel="preload" href="/assets/css/0.styles.680745fd.css" as="style"><link rel="preload" href="/assets/js/app.f5e6def7.js" as="script"><link rel="preload" href="/assets/js/2.8b492b7e.js" as="script"><link rel="preload" href="/assets/js/20.a1fca922.js" as="script"><link rel="prefetch" href="/assets/js/10.bd9d8196.js"><link rel="prefetch" href="/assets/js/11.56940f5c.js"><link rel="prefetch" href="/assets/js/12.120d72ef.js"><link rel="prefetch" href="/assets/js/13.9d3123d5.js"><link rel="prefetch" href="/assets/js/14.4b9bbd83.js"><link rel="prefetch" href="/assets/js/15.80d5cc20.js"><link rel="prefetch" href="/assets/js/16.9a2bf8b9.js"><link rel="prefetch" href="/assets/js/17.1bfb87bc.js"><link rel="prefetch" href="/assets/js/18.9def0742.js"><link rel="prefetch" href="/assets/js/19.8275e46b.js"><link rel="prefetch" href="/assets/js/21.88a55443.js"><link rel="prefetch" href="/assets/js/22.7ecc4734.js"><link rel="prefetch" href="/assets/js/23.546db149.js"><link rel="prefetch" href="/assets/js/3.dd66873b.js"><link rel="prefetch" href="/assets/js/4.a7f51ca2.js"><link rel="prefetch" href="/assets/js/5.44f1ea06.js"><link rel="prefetch" href="/assets/js/6.962ff319.js"><link rel="prefetch" href="/assets/js/7.25da0c18.js"><link rel="prefetch" href="/assets/js/8.9dda87bb.js"><link rel="prefetch" href="/assets/js/9.2ff73d2a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.680745fd.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">XLang</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/xlang/" class="nav-link">
+  XLang
+</a></div><div class="nav-item"><a href="/xlex/" class="nav-link router-link-active">
+  XLex
+</a></div><div class="nav-item"><a href="/xparse/" class="nav-link">
+  XParse
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/xlang/" class="nav-link">
+  XLang
+</a></div><div class="nav-item"><a href="/xlex/" class="nav-link router-link-active">
+  XLex
+</a></div><div class="nav-item"><a href="/xparse/" class="nav-link">
+  XParse
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>XLang</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>XLex</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/xlex/" aria-current="page" class="sidebar-link">XLex 介绍</a></li><li><a href="/xlex/usage.html" class="sidebar-link">使用 XLex 命令行工具</a></li><li><a href="/xlex/reg.html" aria-current="page" class="active sidebar-link">正则表达式</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/xlex/reg.html#正则表达式" class="sidebar-link">正则表达式</a></li><li class="sidebar-sub-header"><a href="/xlex/reg.html#语法规则" class="sidebar-link">语法规则</a></li><li class="sidebar-sub-header"><a href="/xlex/reg.html#ll-1-文法" class="sidebar-link">LL(1) 文法</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>XParse</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>原理</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>其他应用</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="正则表达式"><a href="#正则表达式" class="header-anchor">#</a> 正则表达式</h2> <p>XLex 实现了一个简易的正则表达式。</p> <h2 id="语法规则"><a href="#语法规则" class="header-anchor">#</a> 语法规则</h2> <p>正则表达式由所有可显示的 ASCII 码字符，和一些运算符组成。</p> <p>初始时，匹配的字符串为空串。</p> <p>合法的运算符包括：</p> <ul><li><p>连接：将一个正则表达式和一个字符进行连接，例如 <code>Sa</code>，表示正则表达式 <code>S</code> 后面必须匹配小写英文 <code>a</code>；</p></li> <li><p>或：匹配两个正则表达式中的一个，例如 <code>S|T</code>，表示字符串必须匹配正则表达式 <code>S</code> 或者正则表达式 <code>T</code>；</p></li> <li><p>闭包：<code>S*</code>，表示匹配零个或多个正则表达式 <code>S</code>；</p></li> <li><p>正闭包：<code>S+</code>，类似于闭包，但是至少匹配一次 <code>S</code>；</p></li> <li><p>可选：<code>S?</code>，表示匹配零个或一个正则表达式 <code>S</code>；</p></li> <li><p>括号：<code>(S)</code>，用于改变运算符优先级；</p></li> <li><p>范围选择：<code>[...]</code>，用一对方括号包裹起来，用于匹配一个内部的所有字符。例如，<code>[abc]</code> 表示匹配小写英文字母 <code>a</code> 或 <code>b</code> 或 <code>c</code>；例如，<code>[a-z0-9]</code> 表示匹配一个所有小写英文字母或者数字。</p></li></ul> <p>范围选择和括号的优先级最高，其次是闭包和正闭包和可选，再其次是连接，或的优先级最低。</p> <h2 id="ll-1-文法"><a href="#ll-1-文法" class="header-anchor">#</a> LL(1) 文法</h2> <div class="language-text extra-class"><pre class="language-text"><code>EXPR -&gt; TERM EXPR_REST
+EXPR_REST -&gt; ε
+EXPR_REST -&gt; | EXPR
+
+TERM -&gt; TERM TERM_REST
+TERM_REST -&gt; ε
+TERM_REST -&gt; TERM
+
+TERM -&gt; FACTOR TERM_SUFFIX
+TERM_SUFFIX -&gt; ε
+TERM_SUFFIX -&gt; *
+TERM_SUFFIX -&gt; +
+TERM_SUFFIX -&gt; ?
+
+FACTOR -&gt; &amp;lt;ASCII 码字符&gt;
+FACTOR -&gt; [ RANGE ]
+FACTOR -&gt; ( EXPR )
+FACTOR -&gt; \ &amp;lt;转义字符&gt;
+
+RANGE -&gt; RANGE_ITEM RANGE_REST
+RANGE_REST -&gt; ε
+RANGE_REST -&gt; RANGE
+RANGE_ITEM -&gt; &amp;lt;ASCII 码字符&gt; RANGE_ITEM_REST
+RANGE_ITEM_REST -&gt; ε
+RANGE_ITEM_REST -&gt; - &amp;lt;ASCII 码字符&gt;
+</code></pre></div><p>XLex 使用一个递归下降分析器解析正则表达式，具体实现为 <a href="https://github.com/LonelyKuma/XLex/blob/master/src/reg/parser.ts" target="_blank" rel="noopener noreferrer">parser.ts<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/xlex/usage.html" class="prev">
+        使用 XLex 命令行工具
+      </a></span> <span class="next"><a href="/xparse/">
+        XParse 介绍
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.f5e6def7.js" defer></script><script src="/assets/js/2.8b492b7e.js" defer></script><script src="/assets/js/20.a1fca922.js" defer></script>
+  </body>
+</html>
