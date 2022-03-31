@@ -15,9 +15,7 @@ XLex 为用户提供了命令行工具和 JavaScript 编程接口两种使用方
 在终端中输入以下命令，即可安装 XLex。
 
 ```bash
-npm install -g xlex
-# or
-# yarn global add xlex
+npm install -g @xlor/xlex
 ```
 
 输入以下命令，确认 XLex 已经成功安装。

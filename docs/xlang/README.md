@@ -17,9 +17,7 @@ XLang 提供了一个在线[实验场](https://xlang.netlify.app/)，你可以�
 在终端中输入以下命令，即可安装 XParse。
 
 ```bash
-npm install -g @yjl9903/xlang
-# or
-# yarn global add @yjl9903/xlang
+npm install -g @xlor/xlang
 ```
 
 输入以下命令，确认 XLang 已经成功安装。

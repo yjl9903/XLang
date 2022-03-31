@@ -13,9 +13,7 @@ title: XParse 介绍
 在终端中输入以下命令，即可安装 XParse。
 
 ```bash
-npm install -g @LonelyKuma/XParse
-# or
-# yarn global add @LonelyKuma/XParse
+npm install -g @xlor/xparse
 ```
 
 输入以下命令，确认 XParse 已经成功安装。
