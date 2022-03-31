@@ -4,7 +4,7 @@ title: XLang 介绍
 
 ## 介绍
 
-[XLang](https://github.com/yjl9903/XLang) 是一个简单但是足够强大的编程语言，它由词法分析器 [XLex](https://github.com/yjl9903/XLex) 和语法分析器 [XParse](https://github.com/yjl9903/XParse) 驱动。
+[XLang](https://github.com/yjl9903/XLang) 是一个简单但是足够强大的编程语言，它由词法分析器 [XLex](https://github.com/LonelyKuma/XLex) 和语法分析器 [XParse](https://github.com/LonelyKuma/XParse) 驱动。
 
 XLang 使用了一个由 TypeScript 编写的虚拟机来执行其代码，你可以下载并安装其命令行工具在本地编译和运行你的代码。
 

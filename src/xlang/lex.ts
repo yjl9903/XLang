@@ -13,7 +13,7 @@ const KeyWord = {
   string: 'stringType',
   bool: 'boolType',
   true: 'True',
-  false: 'False'
+  false: 'False',
 };
 
 export const KeyWordList: string[] = [];
@@ -30,12 +30,12 @@ const config = {
         if (value in KeyWord) {
           return {
             type: KeyWord[value],
-            value
+            value,
           };
         } else {
           return { type, value };
         }
-      }
+      },
     },
     {
       type: 'Number',
@@ -47,9 +47,9 @@ const config = {
         }
         return {
           type,
-          value: num
+          value: num,
         };
-      }
+      },
     },
     {
       type: 'Float',
@@ -61,9 +61,9 @@ const config = {
         }
         return {
           type,
-          value: num
+          value: num,
         };
-      }
+      },
     },
     {
       type: 'String',
@@ -72,109 +72,109 @@ const config = {
         const str = value.replace(/\\"/g, '"');
         return {
           type,
-          value: str.substr(1, str.length - 2)
+          value: str.substr(1, str.length - 2),
         };
-      }
+      },
     },
     {
       type: 'Plus',
-      rule: '\\+'
+      rule: '\\+',
     },
     {
       type: 'Minus',
-      rule: '-'
+      rule: '-',
     },
     {
       type: 'Mul',
-      rule: '\\*'
+      rule: '\\*',
     },
     {
       type: 'Div',
-      rule: '/'
+      rule: '/',
     },
     {
       type: 'Mod',
-      rule: '%'
+      rule: '%',
     },
     {
       type: 'Assign',
-      rule: '='
+      rule: '=',
     },
     {
       type: 'Comma',
-      rule: ','
+      rule: ',',
     },
     {
       type: 'Colon',
-      rule: ':'
+      rule: ':',
     },
     {
       type: 'DoubleColon',
-      rule: '::'
+      rule: '::',
     },
     {
       type: 'Semicolon',
-      rule: ';'
+      rule: ';',
     },
     {
       type: 'Dot',
-      rule: '.'
+      rule: '.',
     },
     {
       type: 'Not',
-      rule: '!'
+      rule: '!',
     },
     {
       type: 'And',
-      rule: '&&'
+      rule: '&&',
     },
     {
       type: 'Or',
-      rule: '\\|\\|'
+      rule: '\\|\\|',
     },
     {
       type: 'Equal',
-      rule: '=='
+      rule: '==',
     },
     {
       type: 'NotEqual',
-      rule: '!='
+      rule: '!=',
     },
     {
       type: 'LessThan',
-      rule: '<'
+      rule: '<',
     },
     {
       type: 'MoreThan',
-      rule: '>'
+      rule: '>',
     },
     {
       type: 'LessOrEqual',
-      rule: '<='
+      rule: '<=',
     },
     {
       type: 'MoreOrEqual',
-      rule: '>='
+      rule: '>=',
     },
     {
       type: 'LRound',
-      rule: '\\('
+      rule: '\\(',
     },
     {
       type: 'RRound',
-      rule: '\\)'
+      rule: '\\)',
     },
     {
       type: 'LBrace',
-      rule: '{'
+      rule: '{',
     },
     {
       type: 'RBrace',
-      rule: '}'
+      rule: '}',
     },
     {
       type: 'ToArrow',
-      rule: '->'
+      rule: '->',
     },
     {
       type: 'Comment',
@@ -182,11 +182,11 @@ const config = {
       callback({ type, value }) {
         return {
           type: '__Comment__', // Special lexer type
-          value: value.substr(2).trim()
+          value: value.substr(2).trim(),
         };
-      }
-    }
-  ]
+      },
+    },
+  ],
 };
 
 export { KeyWord, config };

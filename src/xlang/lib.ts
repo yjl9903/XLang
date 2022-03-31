@@ -12,11 +12,11 @@ let Input: string[] = [],
   pos = 0;
 
 export const beforeRunHooks: Array<(...args: any[]) => any> = [
-  input => {
+  (input) => {
     Arrays.clear();
     Input = input || [];
     pos = 0;
-  }
+  },
 ];
 
 export const afterRunHooks: Array<(...args: any[]) => any> = [
@@ -24,7 +24,7 @@ export const afterRunHooks: Array<(...args: any[]) => any> = [
     Arrays.clear();
     Input = [];
     pos = 0;
-  }
+  },
 ];
 
 export const IOLib: BuiltinFunction[] = [
@@ -34,7 +34,7 @@ export const IOLib: BuiltinFunction[] = [
     type: 'boolType',
     fn() {
       return pos < Input.length;
-    }
+    },
   },
   {
     name: 'In::nextNumber',
@@ -47,7 +47,7 @@ export const IOLib: BuiltinFunction[] = [
       } else {
         throw new Error(`Input Error, expects a Number`);
       }
-    }
+    },
   },
   {
     name: 'In::nextFloat',
@@ -60,7 +60,7 @@ export const IOLib: BuiltinFunction[] = [
       } else {
         throw new Error(`Input Error, expects a Float`);
       }
-    }
+    },
   },
   {
     name: 'In::nextString',
@@ -68,7 +68,7 @@ export const IOLib: BuiltinFunction[] = [
     type: 'stringType',
     fn() {
       return Input[pos++];
-    }
+    },
   },
   {
     name: 'In::nextBool',
@@ -83,8 +83,8 @@ export const IOLib: BuiltinFunction[] = [
       } else {
         throw new Error(`Input Error, expects a Bool`);
       }
-    }
-  }
+    },
+  },
 ];
 
 export const ArrayLib: BuiltinFunction[] = [
@@ -97,10 +97,10 @@ export const ArrayLib: BuiltinFunction[] = [
       const newArray = {
         name,
         value: [],
-        father: fa
+        father: fa,
       };
       Arrays.set(name, newArray);
-    }
+    },
   },
   {
     name: 'Array::assign',
@@ -115,7 +115,7 @@ export const ArrayLib: BuiltinFunction[] = [
       for (let i = 0; i < len; i++) {
         arr.value.push(0);
       }
-    }
+    },
   },
   {
     name: 'Array::length',
@@ -126,7 +126,7 @@ export const ArrayLib: BuiltinFunction[] = [
         throw new Error(`Array "${name}" is not defined`);
       }
       return (Arrays.get(name) as XLangArray).value.length;
-    }
+    },
   },
   {
     name: 'Array::push',
@@ -139,7 +139,7 @@ export const ArrayLib: BuiltinFunction[] = [
       const arr = Arrays.get(name) as XLangArray;
       arr.value.push(x);
       return arr.value.length;
-    }
+    },
   },
   {
     name: 'Array::pop',
@@ -151,7 +151,7 @@ export const ArrayLib: BuiltinFunction[] = [
       }
       const arr = Arrays.get(name) as XLangArray;
       return arr.value.pop();
-    }
+    },
   },
   {
     name: 'Array::get',
@@ -166,7 +166,7 @@ export const ArrayLib: BuiltinFunction[] = [
         throw new Error(`Array "${arr.name}" visit out of bound`);
       }
       return arr.value[i];
-    }
+    },
   },
   {
     name: 'Array::set',
@@ -181,7 +181,7 @@ export const ArrayLib: BuiltinFunction[] = [
         throw new Error(`Array "${arr.name}" visit out of bound`);
       }
       return (arr.value[i] = x);
-    }
+    },
   },
   {
     name: 'Array::clear',
@@ -193,7 +193,7 @@ export const ArrayLib: BuiltinFunction[] = [
       }
       const arr = Arrays.get(name) as XLangArray;
       arr.value = [];
-    }
+    },
   },
   {
     name: 'Array::delete',
@@ -209,8 +209,8 @@ export const ArrayLib: BuiltinFunction[] = [
       } else {
         Arrays.delete(name);
       }
-    }
-  }
+    },
+  },
 ];
 
 export const StringLib: BuiltinFunction[] = [
@@ -220,7 +220,7 @@ export const StringLib: BuiltinFunction[] = [
     type: 'numberType',
     fn(s: string) {
       return s.length;
-    }
+    },
   },
   {
     name: 'String::get',
@@ -231,7 +231,7 @@ export const StringLib: BuiltinFunction[] = [
         throw new Error('visit undefined memory');
       }
       return s[i];
-    }
+    },
   },
   {
     name: 'String::to_number',
@@ -239,7 +239,7 @@ export const StringLib: BuiltinFunction[] = [
     type: 'numberType',
     fn(s: string) {
       return parseInt(s);
-    }
+    },
   },
   {
     name: 'String::to_float',
@@ -247,8 +247,8 @@ export const StringLib: BuiltinFunction[] = [
     type: 'floatType',
     fn(s: string) {
       return parseFloat(s);
-    }
-  }
+    },
+  },
 ];
 
 export const NumberLib: BuiltinFunction[] = [
@@ -258,7 +258,7 @@ export const NumberLib: BuiltinFunction[] = [
     type: 'stringType',
     fn(a: number) {
       return String(a);
-    }
+    },
   },
   {
     name: 'Number::max',
@@ -266,7 +266,7 @@ export const NumberLib: BuiltinFunction[] = [
     type: 'numberType',
     fn(a: number, b: number) {
       return Math.max(a, b);
-    }
+    },
   },
   {
     name: 'Number::min',
@@ -274,7 +274,7 @@ export const NumberLib: BuiltinFunction[] = [
     type: 'numberType',
     fn(a: number, b: number) {
       return Math.min(a, b);
-    }
+    },
   },
   {
     name: 'Number::abs',
@@ -282,7 +282,7 @@ export const NumberLib: BuiltinFunction[] = [
     type: 'numberType',
     fn(a: number) {
       return Math.abs(a);
-    }
+    },
   },
   {
     name: 'rand',
@@ -290,8 +290,8 @@ export const NumberLib: BuiltinFunction[] = [
     type: 'numberType',
     fn(l: number, r: number) {
       return Math.floor(Math.random() * (r - l + 1) + l);
-    }
-  }
+    },
+  },
 ];
 
 export const FloatLib: BuiltinFunction[] = [
@@ -301,7 +301,7 @@ export const FloatLib: BuiltinFunction[] = [
     type: 'stringType',
     fn(a: number) {
       return String(a);
-    }
+    },
   },
   {
     name: 'Float::floor',
@@ -309,7 +309,7 @@ export const FloatLib: BuiltinFunction[] = [
     type: 'numberType',
     fn(a: number) {
       return Math.floor(a);
-    }
+    },
   },
   {
     name: 'Float::round',
@@ -317,7 +317,7 @@ export const FloatLib: BuiltinFunction[] = [
     type: 'numberType',
     fn(a: number) {
       return Math.round(a);
-    }
+    },
   },
   {
     name: 'Float::ceil',
@@ -325,7 +325,7 @@ export const FloatLib: BuiltinFunction[] = [
     type: 'numberType',
     fn(a: number) {
       return Math.ceil(a);
-    }
+    },
   },
   {
     name: 'Float::max',
@@ -333,7 +333,7 @@ export const FloatLib: BuiltinFunction[] = [
     type: 'numberType',
     fn(a: number, b: number) {
       return Math.max(a, b);
-    }
+    },
   },
   {
     name: 'Float::min',
@@ -341,7 +341,7 @@ export const FloatLib: BuiltinFunction[] = [
     type: 'floatType',
     fn(a: number, b: number) {
       return Math.min(a, b);
-    }
+    },
   },
   {
     name: 'Float::abs',
@@ -349,7 +349,7 @@ export const FloatLib: BuiltinFunction[] = [
     type: 'floatType',
     fn(a: number) {
       return Math.abs(a);
-    }
+    },
   },
   {
     name: 'Float::sqrt',
@@ -357,6 +357,6 @@ export const FloatLib: BuiltinFunction[] = [
     type: 'floatType',
     fn(a: number) {
       return Math.sqrt(a);
-    }
-  }
+    },
+  },
 ];

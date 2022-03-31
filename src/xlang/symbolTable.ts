@@ -15,7 +15,7 @@ export class SymbolTable {
     {
       isConst = true,
       isArg = false,
-      isGlobal = false
+      isGlobal = false,
     }: { isConst?: boolean; isArg?: boolean; isGlobal?: boolean } = {}
   ) {
     if (this.table.has(name)) {
@@ -27,7 +27,7 @@ export class SymbolTable {
         type,
         isArg,
         isConst,
-        isGlobal
+        isGlobal,
       });
     }
   }

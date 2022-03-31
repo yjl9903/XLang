@@ -1,24 +1,19 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "sourceMap": true,
-    "noImplicitAny": false,
-    "strict": true,
-    "rootDir": "./src",
-    "outDir": "./dist",
+    "target": "es2017",
+    "module": "esnext",
+    "lib": ["esnext"],
+    "moduleResolution": "node",
     "esModuleInterop": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": false,
     "resolveJsonModule": true,
-    "baseUrl": ".",
-    "paths": {
-      "*": [
-        "node_modules/*"
-      ]
-    },
-    "declaration": true,
-    "declarationDir": "types"
-  },
-  "include":[
-    "./src/**/*"
-  ]
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "types": [
+      "vitest/importMeta",
+      "node"
+    ]
+  }
 }

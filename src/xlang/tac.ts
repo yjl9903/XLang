@@ -34,7 +34,7 @@ export enum ThreeAddressCodeType {
   LessOrEqual = 'LessOrEqual',
   MoreOrEqual = 'MoreOrEqual',
   Assign = 'Assign',
-  PushStack = 'PushStack'
+  PushStack = 'PushStack',
 }
 
 export type NOPCodeType = typeof ThreeAddressCodeType.NOP;

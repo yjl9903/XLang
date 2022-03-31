@@ -59,4 +59,4 @@ Worklist 算法在这里关键是找到一些必要的任务加入队列中，�
 
 假设 DFA 的状态数为 $n$，字符集为 $\Sigma$，时间复杂度为 $O(n|\Sigma|\log n)$。在实践中，这篇[论文](https://arxiv.org/pdf/1010.5318.pdf)指出 Hopcroft 算法的平均时间复杂度更优，为 $O(n \log \log n)$。
 
-XLex 的 Hopcroft 算法实现见：[dfa.ts minimize 方法](https://github.com/yjl9903/XLex/blob/master/src/reg/dfa.ts#L133)。
+XLex 的 Hopcroft 算法实现见：[dfa.ts minimize 方法](https://github.com/LonelyKuma/XLex/blob/master/src/reg/dfa.ts#L133)。

@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import path from 'path';
 import { readFileSync, writeFileSync } from 'fs';
 import { cac } from 'cac';
@@ -53,11 +51,11 @@ cli
       } else {
         const text = readFileSync(option.input, 'utf-8')
           .split('\n')
-          .map(row =>
+          .map((row) =>
             row
               .trim()
               .split(' ')
-              .filter(s => s.length > 0)
+              .filter((s) => s.length > 0)
           )
           .reduce((pre, cur) => (pre.push(...cur), pre), [] as string[]);
         runtime.run(res, args, text);

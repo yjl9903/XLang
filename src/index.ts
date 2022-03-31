@@ -3,5 +3,5 @@ export {
   XLangLexer,
   XLangParser,
   LexConfig,
-  SyntaxConfig
+  SyntaxConfig,
 } from './xlang';

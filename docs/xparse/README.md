@@ -4,7 +4,7 @@ title: XParse 介绍
 
 ## 介绍
 
-[XParse](https://github.com/yjl9903/XParse) 是一个语法分析器工具，你可以构造自己的语法分析规则，添加文法的综合属性语法制导翻译方案，用它来分析 Token 流的语法（推荐使用 XLex 作为 Token 流的生产者），输出 Token 流是否为满足你设计文法的合法代码串，以及语法分析树根节点的综合属性值。
+[XParse](https://github.com/LonelyKuma/XParse) 是一个语法分析器工具，你可以构造自己的语法分析规则，添加文法的综合属性语法制导翻译方案，用它来分析 Token 流的语法（推荐使用 XLex 作为 Token 流的生产者），输出 Token 流是否为满足你设计文法的合法代码串，以及语法分析树根节点的综合属性值。
 
 ## 全局安装命令行工具
 
@@ -13,9 +13,9 @@ title: XParse 介绍
 在终端中输入以下命令，即可安装 XParse。
 
 ```bash
-npm install -g @yjl9903/xparse
+npm install -g @LonelyKuma/XParse
 # or
-# yarn global add @yjl9903/xparse
+# yarn global add @LonelyKuma/XParse
 ```
 
 输入以下命令，确认 XParse 已经成功安装。
@@ -31,9 +31,9 @@ xparse --version
 在你的项目根目录下，输入以下命令，即可引入 XParse。
 
 ```bash
-npm install @yjl9903/xparse
+npm install @LonelyKuma/XParse
 # or
-# yarn add @yjl9903/xparse
+# yarn add @LonelyKuma/XParse
 ```
 
 ## 原理

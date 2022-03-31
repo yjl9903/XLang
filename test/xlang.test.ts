@@ -1,5 +1,7 @@
 import path from 'path';
 import { promises } from 'fs';
+import { beforeAll, test, expect } from 'vitest';
+
 import { XLang } from '../src/xlang';
 
 const runtime = new XLang();

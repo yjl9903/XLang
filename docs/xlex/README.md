@@ -4,7 +4,7 @@ title: XLex 介绍
 
 ## 介绍
 
-[XLex](https://github.com/yjl9903/XLex) 是一个词法分析器工具，它在设计时一定程度上借鉴了 [Flex](https://github.com/westes/flex/)。你可以使用它构造自己的词法分析规则，并用它来分析输入的代码文本串，生成 [Token 流](https://en.wikipedia.org/wiki/Lexical_analysis#Token)。XLex 借助 JavaScript 脚本允许你对分析过程做更多的定制。
+[XLex](https://github.com/LonelyKuma/XLex) 是一个词法分析器工具，它在设计时一定程度上借鉴了 [Flex](https://github.com/westes/flex/)。你可以使用它构造自己的词法分析规则，并用它来分析输入的代码文本串，生成 [Token 流](https://en.wikipedia.org/wiki/Lexical_analysis#Token)。XLex 借助 JavaScript 脚本允许你对分析过程做更多的定制。
 
 XLex 为用户提供了命令行工具和 JavaScript 编程接口两种使用方式。你可以直接通过创建默认名为 `xlex.config.js` 的配置文件（脚本），来构造你自己的词法规则，并使用命令行工具导入配置文件并解析代码文本串。同时，你也可以在 JavaScript 项目中引入 XLex，传入配置对象来创建一个词法分析器。
 

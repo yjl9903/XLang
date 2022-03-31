@@ -100,7 +100,7 @@ module.exports = {
 
 + 你必须使用 [CommonJS](http://www.commonjs.org/) 规范，将配置对象作为模块进行导出；
 
-+ 配置对象包含两个属性（完整类型定义见 [type.ts](https://github.com/yjl9903/XLex/blob/master/src/lexer/type.ts#L27)）：
++ 配置对象包含两个属性（完整类型定义见 [type.ts](https://github.com/LonelyKuma/XLex/blob/master/src/lexer/type.ts#L27)）：
 
   + `hooks`：可选项，配置词法分析的预处理和后处理钩子函数，你可以定义 `beforeCreate()` 和 `created()` 两个函数；
 

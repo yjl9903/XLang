@@ -9,7 +9,7 @@ import {
   UnitOPCode,
   BinOPCode,
   GotoCode,
-  IfGotoCode
+  IfGotoCode,
 } from './tac';
 import { GlobalFunction, UserFunction } from './type';
 
@@ -86,7 +86,7 @@ export function vm(
           callStk.push({
             name: fnName,
             sp,
-            pc
+            pc,
           });
           fnName = name;
           sp = varStk.length;
@@ -259,7 +259,7 @@ export function vm(
       const valueY = getValue(modCode.y);
       const value = valueX % valueY;
       setValue(modCode.dst, value);
-    }
+    },
   };
 
   for (const arg of args) {

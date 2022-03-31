@@ -5,7 +5,7 @@ import {
   GlobalFunction,
   VoidType,
   UserFunction,
-  CmpOpType
+  CmpOpType,
 } from './type';
 import { SymbolTable } from './symbolTable';
 import {
@@ -20,7 +20,7 @@ import {
   FunctionReturnCode,
   ThreeAddressCodeType,
   IfGotoCode,
-  GotoCode
+  GotoCode,
 } from './tac';
 
 export type LeafType = 'Variable' | 'Literal';
@@ -129,7 +129,7 @@ export class RootASTNode extends BasicASTNode {
   }
 
   merge(other: RootASTNode) {
-    other.fns.forEach(node => this.fns.push(node));
+    other.fns.forEach((node) => this.fns.push(node));
     if (other.main) {
       this.main = other.main;
     }
@@ -146,7 +146,7 @@ export class RootASTNode extends BasicASTNode {
       args: this.main.getArgsType(),
       address: 1,
       memCount: 0,
-      name: 'main'
+      name: 'main',
     });
     for (const fn of this.fns) {
       context.globalFns.set(fn.name, {
@@ -154,14 +154,14 @@ export class RootASTNode extends BasicASTNode {
         args: fn.getArgsType(),
         address: -1,
         memCount: 0,
-        name: fn.name
+        name: fn.name,
       });
     }
 
     // Compile program entry and main function
     const start: FunctionCallCode = {
       type: ThreeAddressCodeType.FunctionCall,
-      name: 'main'
+      name: 'main',
     };
     const code: ThreeAddressCode[] = [start];
     code.push(...this.main.visit(context).code);
@@ -202,12 +202,14 @@ export class FunctionASTNode extends BasicASTNode {
     this.name = name;
     this.args = args;
     this.returnType = returnType;
-    statements.statements.forEach(statement => this.statements.push(statement));
+    statements.statements.forEach((statement) =>
+      this.statements.push(statement)
+    );
     this.haveReturn = statements.haveReturn;
   }
 
   getArgsType() {
-    return this.args.defs.map(def => def.type as ValueType);
+    return this.args.defs.map((def) => def.type as ValueType);
   }
 
   visit(context: Context): NodeVisitorReturn {
@@ -269,7 +271,7 @@ export class StatementListASTNode extends BasicASTNode {
     if (other.createContext) {
       this.statements.push(other);
     } else {
-      other.statements.forEach(statement => this.statements.push(statement));
+      other.statements.forEach((statement) => this.statements.push(statement));
     }
   }
 
@@ -341,7 +343,7 @@ export class IfStatementASTNode extends BasicASTNode {
         type: ThreeAddressCodeType.IfGoto,
         src: condRes.dst,
         target: false,
-        offset: code.length
+        offset: code.length,
       };
       code.push(ifFalseGoto);
       const bodyRes = this.body.visit(context);
@@ -351,7 +353,7 @@ export class IfStatementASTNode extends BasicASTNode {
       if (this.elseBody) {
         const trueGoto: GotoCode = {
           type: ThreeAddressCodeType.Goto,
-          offset: code.length
+          offset: code.length,
         };
         code.push(trueGoto);
 
@@ -390,14 +392,14 @@ export class WhileStatementASTNode extends BasicASTNode {
         type: ThreeAddressCodeType.IfGoto,
         src: condRes.dst,
         target: false,
-        offset: code.length
+        offset: code.length,
       };
       code.push(ifFalseGoto);
       const bodyRes = this.body.visit(context);
       code.push(...bodyRes.code);
       code.push({
         type: ThreeAddressCodeType.Goto,
-        offset: -code.length - 1
+        offset: -code.length - 1,
       });
       ifFalseGoto.offset = code.length - ifFalseGoto.offset - 1;
     } else {
@@ -452,7 +454,7 @@ export class ForStatementASTNode extends BasicASTNode {
         type: ThreeAddressCodeType.IfGoto,
         src: condRes.dst,
         offset: code.length,
-        target: false
+        target: false,
       };
       code.push(ifFalseGoto);
 
@@ -460,13 +462,13 @@ export class ForStatementASTNode extends BasicASTNode {
       code.push(...bodyRes.code);
 
       const updateCode: ThreeAddressCode[] = ([] as ThreeAddressCode[]).concat(
-        ...this.update.map(assign => assign.visit(context).code)
+        ...this.update.map((assign) => assign.visit(context).code)
       );
       code.push(...updateCode);
 
       const gotoInit: GotoCode = {
         type: ThreeAddressCodeType.Goto,
-        offset: initLen - code.length - 1
+        offset: initLen - code.length - 1,
       };
       code.push(gotoInit);
 
@@ -488,7 +490,7 @@ export class DefineListASTNode extends BasicASTNode {
   }
 
   merge(other: DefineListASTNode) {
-    other.defs.forEach(def => this.defs.push(def));
+    other.defs.forEach((def) => this.defs.push(def));
   }
 
   visit(context: Context): NodeVisitorReturn {
@@ -519,16 +521,16 @@ export class DefineASTNode extends BasicASTNode {
         if (this.dst.type === undefined || this.dst.type === res.dst.type) {
           const address = varCnt++;
           context.symbols.add(address, this.dst.name, res.dst.type, {
-            isConst: this.dst.isConst
+            isConst: this.dst.isConst,
           });
           // gen assign code
           const assign: UnitOPCode = {
             type: 'Assign',
             dst: {
               address,
-              type: res.dst.type
+              type: res.dst.type,
             },
-            src: res.dst
+            src: res.dst,
           };
           code.push(assign);
           return { code };
@@ -543,7 +545,7 @@ export class DefineASTNode extends BasicASTNode {
         throw new Error(`const variable ${this.dst.name} is not initialized`);
       }
       context.symbols.add(varCnt++, this.dst.name, this.dst.type, {
-        isConst: this.dst.isConst
+        isConst: this.dst.isConst,
       });
       return { code: [] };
     }
@@ -570,7 +572,7 @@ export class ArgDefineListASTNode extends BasicASTNode {
         def.type as ValueType,
         {
           isArg: true,
-          isConst: false
+          isConst: false,
         }
       );
     }
@@ -642,7 +644,7 @@ export class BinOPASTNode extends BasicASTNode {
         const assignCode: UnitOPCode = {
           type: 'Assign',
           dst: tmpDst,
-          src: xRes.dst
+          src: xRes.dst,
         };
         code.push(assignCode);
         xRes.dst = tmpDst;
@@ -664,17 +666,17 @@ export class BinOPASTNode extends BasicASTNode {
             type: ThreeAddressCodeType.IfGoto,
             src: xRes.dst,
             target: this.type === 'And',
-            offset: 2
+            offset: 2,
           };
           code.push(ifGoto);
           code.push({
             type: 'Assign',
             dst: { address: tmpVar, type },
-            src: { value: this.type === 'Or', type: 'boolType' }
+            src: { value: this.type === 'Or', type: 'boolType' },
           });
           code.push({
             type: ThreeAddressCodeType.Goto,
-            offset: yRes.code.length + 1
+            offset: yRes.code.length + 1,
           });
         }
 
@@ -684,7 +686,7 @@ export class BinOPASTNode extends BasicASTNode {
           type: this.type as BinOPType,
           dst: { address: tmpVar, type },
           x: xRes.dst,
-          y: yRes.dst
+          y: yRes.dst,
         });
         return { code, dst: { address: tmpVar, type } };
       } else {
@@ -734,7 +736,7 @@ export class UnitOPASTNode extends BasicASTNode {
           code.push({
             type: this.type as UnitOPType,
             dst,
-            src: res.dst
+            src: res.dst,
           });
           return { code, dst };
         } else {
@@ -749,7 +751,7 @@ export class UnitOPASTNode extends BasicASTNode {
           code.push({
             type: this.type as UnitOPType,
             dst: { address: tmpVar, type },
-            src: res.dst
+            src: res.dst,
           });
           return { code, dst: { address: tmpVar, type } };
         } else {
@@ -784,7 +786,7 @@ export class FunctionCallASTNode extends BasicASTNode {
           code.push(...res.code);
           const callCode: FunctionCallCode = {
             type: ThreeAddressCodeType.FunctionCall,
-            name: this.name
+            name: this.name,
           };
           code.push(callCode);
 
@@ -793,7 +795,7 @@ export class FunctionCallASTNode extends BasicASTNode {
           } else {
             const dst = {
               globalAddress: 0,
-              type: fn.type
+              type: fn.type,
             };
             return { code, dst };
           }
@@ -851,7 +853,7 @@ export class FunctionCallArgListASTNode extends BasicASTNode {
         code.push(...res.code);
         const pushCode: PushStackCode = {
           type: ThreeAddressCodeType.PushStack,
-          src: res.dst
+          src: res.dst,
         };
         code.push(pushCode);
       } else {
@@ -888,7 +890,7 @@ export class FunctionReturnASTNode extends BasicASTNode {
         const returnCode: FunctionReturnCode = {
           type: ThreeAddressCodeType.FunctionReturn,
           name: context.fnName,
-          src: res.dst
+          src: res.dst,
         };
         code.push(returnCode);
         return { code };
@@ -903,7 +905,7 @@ export class FunctionReturnASTNode extends BasicASTNode {
       }
       const returnCode: FunctionReturnCode = {
         type: ThreeAddressCodeType.FunctionReturn,
-        name: context.fnName
+        name: context.fnName,
       };
       return { code: [returnCode] };
     }

@@ -1,5 +1,5 @@
-import { Lexer, Token } from 'xlex';
-import { LRParser } from '@yjl9903/xparse';
+import { Lexer, Token } from '@xlor/xlex';
+import { LRParser } from '@xlor/xparse';
 
 import { config as LexConfig } from './lex';
 import { config as SyntaxConfig } from './syntax';
