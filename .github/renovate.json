@@ -13,6 +13,7 @@
     }
   ],
   "ignoreDeps": [
-    "husky"
+    "husky",
+    "lint-staged"
   ]
 }
