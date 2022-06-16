@@ -4,7 +4,7 @@ specifiers:
   '@types/node': 17.0.43
   '@xlor/xlex': ^1.0.0
   '@xlor/xparse': ^1.0.0
-  bumpp: 8.1.0
+  bumpp: 8.2.0
   cac: ^6.7.12
   husky: 4.3.8
   lint-staged: 12.5.0
@@ -23,7 +23,7 @@ dependencies:
 
 devDependencies:
   '@types/node': 17.0.43
-  bumpp: 8.1.0
+  bumpp: 8.2.0
   husky: 4.3.8
   lint-staged: 12.5.0
   prettier: 2.7.1
@@ -2823,8 +2823,8 @@ packages:
     resolution: {integrity: sha512-HpGFw18DgFWlncDfjTa2rcQ4W88O1mC8e8yZ2AvQY5KDaktSTwo+KRf6nHK6FRI5FyRyb/5T6+TSxfP7QyGsmQ==}
     dev: true
 
-  /bumpp/8.1.0:
-    resolution: {integrity: sha512-USNqoYA+xM50vJGDoChjG9J7IeZeyymi7OUC9WT58pUF9l2Ue0Q6f8ec5vdai2dD70C+bs1d5WRe/JHNNXiMGg==}
+  /bumpp/8.2.0:
+    resolution: {integrity: sha512-DhFa4DSREOwnHJQyQ+Qhj9pUJAIZKMEtuHN7BuQij4CoxSBc6n4bBZnlvFWuLXNMr0aCtsMXnkQWC/7GyGypYw==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
