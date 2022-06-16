@@ -11,5 +11,8 @@
       "matchManagers": ["github-actions"],
       "automerge": true
     }
+  ],
+  "ignoreDeps": [
+    "husky"
   ]
 }
