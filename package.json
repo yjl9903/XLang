@@ -53,5 +53,5 @@
     "vuepress": "1.9.7",
     "vuepress-plugin-mathjax": "1.2.8"
   },
-  "packageManager": "pnpm@7.4.0"
+  "packageManager": "pnpm@7.5.0"
 }
