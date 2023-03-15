@@ -10,7 +10,6 @@ features:
   details: 语法简洁，易于上手。
 - title: 可扩展
   details: 允许为运行时动态绑定自定义函数。
-footer: MIT Licensed | Copyright © 2020 XLor
 ---
 
 ::: slot footer
