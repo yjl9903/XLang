@@ -45,8 +45,6 @@ Hopcroft 算法初始时，将 DFA 状态集合划分为接受状态和非接受
 \end{algorithm}
 </pseudocode>
 
-> 伪代码的 $\LaTeX$ 源码见：[pseudocode.tex](https://github.com/yjl9903/XLang/blob/master/docs/deep/pseudocode.tex)。
-
 伪代码没有使用迭代算法，而是也使用了 Worklist 算法的思想，伪代码中的 WL 是一个尝试对等价类进行分割的任务队列。
 
 Worklist 算法在这里关键是找到一些必要的任务加入队列中，对应伪代码的第 $10$ 到 $18$ 行。根据 $Y$ 集合是否存在于任务队列中分类讨论，如果 $Y$ 集合已经在队列中，那么为了保证等价类的信息，显然需要将任务队列中的 $Y$ 集合分裂。$Y$ 集合不在任务队列时的情况略微有些复杂。
@@ -57,6 +55,6 @@ Worklist 算法在这里关键是找到一些必要的任务加入队列中，�
 
 有了这个引理，就不难解释第 $13$ 行到第 $17$ 行的判断了。更进一步，我们选择 $P$ 和 $Q$ 中较小的那个加入任务队列。显然，$\min(|P|, |Q|) \le \frac{|S|}{2}$，因此对于任务队列的更新，要么大小不变，要么等价类大小缩小一半。因此，任务队列中的等价类大小会不断缩小为原来的一半。
 
-假设 DFA 的状态数为 $n$，字符集为 $\Sigma$，时间复杂度为 $O(n|\Sigma|\log n)$。在实践中，这篇[论文](https://arxiv.org/pdf/1010.5318.pdf)指出 Hopcroft 算法的平均时间复杂度更优，为 $O(n \log \log n)$。
+假设 DFA 的状态数为 $n$，字符集为 $\Sigma$，时间复杂度为 $O(n|\Sigma|\log n)$。在实践中，论文指出 Hopcroft 算法的平均时间复杂度更优，为 $O(n \log \log n)$。
 
-XLex 的 Hopcroft 算法实现见：[dfa.ts minimize 方法](https://github.com/LonelyKuma/XLex/blob/master/src/reg/dfa.ts#L133)。
+XLex 的 Hopcroft 算法实现见：dfa.ts minimize 方法。

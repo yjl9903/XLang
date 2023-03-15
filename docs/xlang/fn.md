@@ -4,7 +4,7 @@ title: 内置函数
 
 ## 内置函数
 
-XLang 提供了 JavaScript 编写的内置函数。
+孤独熊熊提供了 JavaScript 编写的内置函数。
 
 你也可以使用命令行工具导入自己的接口。
 
@@ -25,7 +25,7 @@ module.exports = {
 }
 ```
 
-编写 `test.xl`，使用命令 `xlang test.xl --lib lib.js` 运行 XLang 脚本。
+编写 `test.xl`，使用命令 `onekuma test.xl --lib lib.js` 运行孤独熊熊脚本。
 
 ```rust
 fn main() {
@@ -36,7 +36,7 @@ fn main() {
 
 ## IO
 
-XLang 不仅支持传入命令行参数，还支持读取文件的输入。
+孤独熊熊不仅支持传入命令行参数，还支持读取文件的输入。
 
 ### `In::hasNext()`
 

@@ -10,7 +10,7 @@ title: 使用 XParse 命令行工具
 xparse --help
 ```
 
-[XParse v1.0.1](https://www.npmjs.com/package/@xlor/xparse) 的帮助内容如下所示。
+XParse 的帮助内容如下所示。
 
 ```text
 XParse/1.0.1
@@ -162,7 +162,7 @@ module.exports = {
 
 + 你必须使用 [CommonJS](http://www.commonjs.org/) 规范，将配置对象作为模块进行导出；
 
-+ 配置对象包含五个属性（完整类型定义见 [type.ts](https://github.com/LonelyKuma/XParse/blob/master/src/LRparser/type.ts#L22)）：
++ 配置对象包含五个属性（完整类型定义见 type.ts）：
 
   + `hooks`：可选项，配置语法分析的预处理和后处理钩子函数，你可以定义 `beforeCreate()` 和 `created()` 两个函数；
 

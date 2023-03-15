@@ -60,4 +60,4 @@ RANGE_ITEM_REST -> ε
 RANGE_ITEM_REST -> - <ASCII 码字符>
 ```
 
-XLex 使用一个递归下降分析器解析正则表达式，具体实现为 [parser.ts](https://github.com/LonelyKuma/XLex/blob/master/src/reg/parser.ts)。
+XLex 使用一个递归下降分析器解析正则表达式，具体实现为 parser.ts。

@@ -20,4 +20,4 @@ title: SetMap
 
 ## 实现
 
-见 [yjl9903/SetMap](https://github.com/yjl9903/SetMap)。
+见 SetMap。

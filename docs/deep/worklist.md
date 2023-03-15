@@ -8,7 +8,7 @@ title: Worklist 算法
 
 <center><img src="/iterative.png" alt="Iterative Algorithm"></center>
 
-> 引用自李樾和谭添老师的 [Software Analysis / Static Program Analysis](https://pascal-group.bitbucket.io/teaching.html) 课程讲义。
+> 引用自李樾和谭添老师的 Software Analysis / Static Program Analysis 课程讲义。
 
 这个迭代算法在最坏情况下时间复杂度可能达到答案规模乘一轮迭代的时间，有一个优化就是使用 Worklist 算法。
 
@@ -27,5 +27,3 @@ Worklist 算法启发了我，在构造 LR(1) 项目集族自动机时也使用�
 > 引用自《编译原理 - 第二版》。
 
 在求闭包和构造项集时都使用了迭代算法，可以发现都是相同的项目（项目集）产生相同的输出，我们用类似 Worklist 算法的想法也能优化这里构造的迭代算法。
-
-具体实现参考：[LRdfa.ts](https://github.com/LonelyKuma/XParse/blob/master/src/LRparser/LRdfa.ts#L127)。

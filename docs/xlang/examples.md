@@ -4,8 +4,6 @@ title: 示例
 
 ## Hello World
 
-你可以在[实验场](https://xlang.netlify.app/playground)中导入这些例子，运行尝试。
-
 ```rust
 fn main() {
   println("Hello World!");

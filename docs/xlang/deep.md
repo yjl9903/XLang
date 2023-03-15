@@ -40,17 +40,17 @@ title: 原理和设计
 
 这些结点均实现了在遍历抽象语法树的递归访问函数 `visit(context: Context): NodeVisitorReturn`，其中 `context` 包含当前访问位置的上下文信息，包含符号表，全局函数和当前编译的函数。
 
-为了实现作用域的切换，符号表形成了一个链表的结构，每个作用域的符号表有一个指针指向上层符号表，每个符号表使用一个哈希表实现。在查询具体符号时，会在当前作用域中的哈希表查找，若找不到会继续在上层递归查找。符号表的具体实现见 [symbolTable.ts](https://github.com/yjl9903/XLang/blob/master/src/xlang/symbolTable.ts)。
+为了实现作用域的切换，符号表形成了一个链表的结构，每个作用域的符号表有一个指针指向上层符号表，每个符号表使用一个哈希表实现。在查询具体符号时，会在当前作用域中的哈希表查找，若找不到会继续在上层递归查找。符号表的具体实现见 symbolTable.ts。
 
 访问函数都会返回一个对象，包含两个属性。`code` 属性存放当前结点生成出来的代码，`dst` 属性存放这个结点返回值的变量或常量信息，包含它的类型，内存相对地址等信息。
 
 ## 三地址码
 
-XLang 的三地址码支持以下指令：
+孤独熊熊的三地址码支持以下指令：
 
 `NOP`，`FunctionCall`，`FunctionReturn`，`PushStack`，`Goto`，`IfGoto`，`Plus`，`Minus`，`Mul`，`Div`，`Mod`，`Negative`，`Not`，`And`，`Or`，`NotEqual`，`Equal`，`LessThan`，`MoreThan`，`LessOrEqual`，`MoreOrEqual`，`Assign`。
 
-更详细和完整的三地址码类型定义见 [tac.ts](https://github.com/yjl9903/XLang/blob/master/src/xlang/tac.ts)，以及类型推断的定义。
+更详细和完整的三地址码类型定义见 tac.ts，以及类型推断的定义。
 
 这些三地址码指令可以分为 $5$ 类。
 

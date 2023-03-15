@@ -9,6 +9,10 @@ features:
 - title: 简洁
   details: 语法简洁，易于上手。
 - title: 可扩展
-  details: XLang 允许你为其运行时动态绑定自定义函数。
+  details: 允许为运行时动态绑定自定义函数。
 footer: MIT Licensed | Copyright © 2020 XLor
 ---
+
+::: slot footer
+MIT Licensed | [XLor](https://onekuma.cn) © 2023 | [苏ICP备19000844号-2](https://beian.miit.gov.cn/)
+:::
